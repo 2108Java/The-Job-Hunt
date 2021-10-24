@@ -1,7 +1,8 @@
 package com.revature.services;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.*;
+import org.mockito.Mock;
+import org.junit.jupiter.api.Assertions;
 import com.revature.models.User;
 
 public class TestUserServices {
@@ -37,7 +38,7 @@ public class TestUserServices {
 	public void testLoginUser() {
 		
 	}
-	
+
 	@Test
 	public void testUpdateUserEmail() {
 		
