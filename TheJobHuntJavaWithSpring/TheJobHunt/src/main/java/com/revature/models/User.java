@@ -49,9 +49,50 @@ public class User {
 	
 	@OneToMany(mappedBy ="users")
 	private List<Jobs> jobs;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
+	public List<Jobs> getJobs() {
+		return jobs;
+	}
+
+	public void setJobs(List<Jobs> jobs) {
+		this.jobs = jobs;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", jobs=" + jobs
+				+ "]";
+	}
 	
 	//@OneToOne
 	//List<Information> info;
+	
+	
+	
 	
 }
 

@@ -22,7 +22,11 @@ public class UserServiceImpl implements UserServices {
 	@Override
 	public User userExists(User user) {
 		// TODO Auto-generated method stub
-		return userDao.getByUser(user);
+		if(userDao.findbyEmail(user.getUserEmail())==1)
+			return user;
+		else {
+			return null;
+		}
 	}
 
 	@Override
@@ -43,7 +47,7 @@ public class UserServiceImpl implements UserServices {
 	@Override
 	public boolean insertUser(User user) {
 		boolean success = false;
-		if(userDao.save(user) != null) {
+		if(userDao.save(user).getId()>0) {
 			success= true;
 		}
 		
