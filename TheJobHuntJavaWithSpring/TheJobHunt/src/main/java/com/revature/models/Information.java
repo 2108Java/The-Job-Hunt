@@ -34,9 +34,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "users_info")
 public class Information {
 
-<<<<<<< HEAD
-}
-=======
 	@Id
 	@Column(name = "user_info_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -66,4 +63,3 @@ public class Information {
 	@Column(name = "zip", nullable = false, unique = false)
 	private int zip;
 }
->>>>>>> e18687630b26c1d1dd294f001c3e1b196672faf4
