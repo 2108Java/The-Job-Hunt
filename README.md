@@ -1,6 +1,10 @@
-##USAJobs api Job search app
+USAJobs api Job search app
+=======
+*By The PoJo's*
+-----------
 
-##User Stories:
+User Stories:
+-----------
 
 1. User is able to log in/ log out
 2. User is able to fill in a question air for personal information
@@ -19,7 +23,8 @@
 
 
 
-##Stretch goals:
+Stretch goals:
+-----------
 
 1. Resume to JSON 
 2. Census data
