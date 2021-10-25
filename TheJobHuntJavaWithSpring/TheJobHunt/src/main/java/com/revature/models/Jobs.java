@@ -49,4 +49,43 @@ public class Jobs {
 	
 	@Column(name = "applied_for")
 	private boolean appliedFor;
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+
+	public int getJobId() {
+		return jobId;
+	}
+
+	public void setJobId(int jobId) {
+		this.jobId = jobId;
+	}
+
+	public boolean isAppliedFor() {
+		return appliedFor;
+	}
+
+	public void setAppliedFor(boolean appliedFor) {
+		this.appliedFor = appliedFor;
+	}
+
+	@Override
+	public String toString() {
+		return "Jobs [Id=" + Id + ", users=" + users + ", jobId=" + jobId + ", appliedFor=" + appliedFor + "]";
+	}
+	
+	
 }

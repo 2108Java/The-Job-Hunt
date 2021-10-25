@@ -23,10 +23,16 @@ public interface UserDao extends JpaRepository<User, Integer>{
 	
 	@Modifying
 	@Query("update User u set u.userPassword = ?1 where u.id = ?2")
-	void updatePassword(String password, int id);
+	int updatePassword(String password, int id);
 	
 	@Modifying
 	@Query("update User u set u.userEmail = ?1 where u.id = ?2")
-	void updateEmail(String email, int id);
+	int updateEmail(String email, int id);
+	
+	@Modifying
+	@Query("from User u where u.userEmail = ?1")
+	int findbyEmail(String email);
+	
+
 	
 }
