@@ -3,81 +3,84 @@
         <div class="col col-xl-10">
             <div class="card" style="border-radius: 1rem;">
                 <div class="row g-0">
-                    <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                        <div class="card-body p-4 p-lg-5 text-black">
-                            <form>
-                                <div class="d-flex align-items-center mb-3 pb-1">
+                    <div class="col d-flex align-items-center">
+                        <div class="card-body p-3 p-lg-5 text-black">
+                            <div class="row justify-content-between">
+                                <div class="col-4">
                                     <span class="h1 fw-bold mb-0">The Job Hunt &nbsp;</span>
-                                    <img src="../favicon.ico" alt="favicon" width="50" height="50" />
                                 </div>
-                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
-
-                                <div class="form-outline mb-4">
+                                <div class="col-4">
+                                    <h1>Powered by:</h1>
+                                    <img src="../../assets/usajobs.png" alt="favicon" width="250" height="60" />
+                                </div>
+                            </div>
+                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Register fro a new account</h5>
+                            <form [formGroup]="registerform" (ngSubmit)="onSubmit()">
+                                <div class="form-outline mb-4" [ngClass]="displayFieldCss('email')">
+                                    <div *ngIf="displayError" >
+                                        <span class="glyphicon glyphicon-remove form-control-feedback fix-error-icon"></span>
+                                        <span class="sr-only">(error)</span>
+                                        <div class="error-msg">
+                                          {{ errorMsg }}
+                                        </div>
+                                      </div>
                                     <input type="email" class="form-control form-control-lg"
-                                        placeholder="Email@Address.com" name="email" required
-                                        [(ngModel)]="currentUser.email" />
+                                        placeholder="Email@Address.com" id="email" formControlName="email" required />
                                     <label class="form-label">Email address</label>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-outline mb-4">
                                             <input class="form-control form-control-lg" type="text" placeholder="John"
-                                                name="firstName" required [(ngModel)]="currentInfo.firstName">
+                                                id="firstname" formControlName="firstname" required>
                                             <label class="form-label">First Name</label>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-outline mb-4">
                                             <input class="form-control form-control-lg" type="text" placeholder="Doe"
-                                                name="lastName" required [(ngModel)]="currentInfo.lastName">
+                                                id="lastname" formControlName="lastname" required>
                                             <label class="form-label">Last Name</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input type="email" class="form-control form-control-lg"
-                                        placeholder="Email@Address.com" name="email" required
-                                        [(ngModel)]="currentUser.email" />
-                                        <label class="form-label">Street Address</label>
+                                    <input type="text" class="form-control form-control-lg" placeholder="123 N. 1st St."
+                                        id="address" formControlName="address" required />
+                                    <label class="form-label">Street Address</label>
                                 </div>
                                 <div class="row justify-content-center">
                                     <div class="col">
                                         <div class="form-outline mb-4">
-                                            <input class="form-control form-control-lg" type="text" placeholder="123 N. 1st St." name="street"
-                                            required [(ngModel)]="currentInfo.street">
-                                                <label class="form-label">City</label>
+                                            <input class="form-control form-control-lg" type="text"
+                                                placeholder="New York City" id="city" formControlName="city" required>
+                                            <label class="form-label">City</label>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline mb-4">
                                             <input class="form-control form-control-lg" type="text" placeholder="NY"
-                                                name="state" required [(ngModel)]="currentInfo.state">
+                                                id="state" formControlName="state" required>
                                             <label class="form-label">State</label>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-outline mb-4">
                                             <input class="form-control form-control-lg" type="number"
-                                                placeholder="12345" name="zip" required [(ngModel)]="currentInfo.zip">
+                                                placeholder="12345" id="zip" formControlName="zip" required>
                                             <label class="form-label">Zip Code</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="pt-1 mb-4">
                                     <button class="btn btn-dark btn-lg btn-block" type="button"
-                                        (click)="register()">Register</button>
+                                        type="submit">Register</button>
                                 </div>
 
-                                <!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
                                 <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a
                                         routerLink="/login" style="color: #393f81;">Register here</a></p>
                             </form>
-
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-5 d-none d-md-block">
-                        <img src="../../assets/loginphoto.jpg" alt="login form" class="img-fluid"
-                            style="border-radius: 0 1rem 1rem 0;" />
                     </div>
                 </div>
             </div>
