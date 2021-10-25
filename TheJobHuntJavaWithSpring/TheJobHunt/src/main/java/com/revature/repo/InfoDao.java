@@ -16,6 +16,7 @@ update info
 select info by id
 ﻿delete info
  */
+	
 	//void update(Information i);
 	//users_info(user_info_id, first_name, last_name, street, city, state, zip, user_id)
 	
