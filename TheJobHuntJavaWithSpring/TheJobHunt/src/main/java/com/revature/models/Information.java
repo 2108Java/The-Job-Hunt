@@ -43,7 +43,7 @@ public class Information {
 	@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
 	private User users;
-	//int userIdFk;
+	
 	
 	@Column(name = "first_name", nullable = false, unique = false)
 	private String firstName;

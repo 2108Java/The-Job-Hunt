@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "saved_jobs")
 public class Jobs {
 
+	
 	/*
 	 * create table saved_jobs(
 	saved_job_id serial primary key,
