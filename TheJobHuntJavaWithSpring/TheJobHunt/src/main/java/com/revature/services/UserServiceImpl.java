@@ -56,13 +56,12 @@ public class UserServiceImpl implements UserServices {
 		
 		return success;
 	}
-
+ 
 	@Override
 	public boolean insertUser(User user) {
 		boolean success = false;
 		
 //		createUser(user);
-		success = true;
 		
 		if(userDao.save(user).getId()>0) {
 			success= true;
