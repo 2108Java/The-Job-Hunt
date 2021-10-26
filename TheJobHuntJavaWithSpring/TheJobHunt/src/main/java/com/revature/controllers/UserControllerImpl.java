@@ -1,4 +1,4 @@
-package com.revature.services;
+package com.revature.controllers;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.controllers.UserController;
 import com.revature.models.User;
+import com.revature.services.UserServices;
 
 @RestController
 public class UserControllerImpl implements UserController {
