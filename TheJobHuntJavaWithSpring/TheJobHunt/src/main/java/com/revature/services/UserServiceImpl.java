@@ -11,6 +11,17 @@ public class UserServiceImpl implements UserServices {
 
 	@Autowired
 	private UserDao userDao;
+	private static User user= new User(1,"fakeEmail@gmail.com","fake", null);;
+	
+	private static User intializeUser() {
+		
+		return user;
+	}
+	private static User createUser(User newUser) {
+		user = newUser;
+		
+		return user;
+	}
 	
 	@Override
 	public boolean authenticate(User user) {
@@ -21,12 +32,14 @@ public class UserServiceImpl implements UserServices {
 
 	@Override
 	public User userExists(User user) {
-		// TODO Auto-generated method stub
-		if(userDao.findbyEmail(user.getUserEmail())==1)
-			return user;
-		else {
-			return null;
-		}
+		
+		return intializeUser();
+		
+//		if(userDao.findbyEmail(user.getUserEmail())==1)
+//			return user;
+//		else {
+//			return null;
+//		}
 	}
 
 	@Override
@@ -47,9 +60,13 @@ public class UserServiceImpl implements UserServices {
 	@Override
 	public boolean insertUser(User user) {
 		boolean success = false;
-		if(userDao.save(user).getId()>0) {
-			success= true;
-		}
+		
+		createUser(user);
+		success = true;
+		
+//		if(userDao.save(user).getId()>0) {
+//			success= true;
+//		}
 		
 		return success;
 	}

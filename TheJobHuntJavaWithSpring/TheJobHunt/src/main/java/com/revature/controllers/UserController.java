@@ -6,11 +6,11 @@ import com.revature.models.User;
 
 public interface UserController {
 	
-	void createSession(HttpSession session, User user);
+	User createSession(HttpSession session, User user);
 	
 	void invalidateSession(HttpSession session);
 	
-	void validateSession(HttpSession session);
+	User validateSession(HttpSession session);
 	
 	void updateUser(HttpSession session, User user);
 	

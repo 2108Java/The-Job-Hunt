@@ -2,9 +2,11 @@ package com.revature.services;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.controllers.UserController;
@@ -12,15 +14,16 @@ import com.revature.models.User;
 
 @RestController
 public class UserControllerImpl implements UserController {
-
+	@Autowired
 	private UserServices userService;
+	
 	@Override
 	@PostMapping(value ="/login")
-	public void createSession(HttpSession session, User user) {
-		
+	public User createSession(HttpSession session, @RequestBody User user) {
 		if(userService.loginUser(user)) {
 			session.setAttribute("user", user);
 		}
+		return user;
 	}
 
 	@Override
@@ -32,16 +35,20 @@ public class UserControllerImpl implements UserController {
 
 	@Override
 	@GetMapping(value ="/checkUser")
-	public void validateSession(HttpSession session) {
-		// TODO Auto-generated method stub
-
+	public User validateSession(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		
+		return user;
 	}
 
 	@Override
 	@PutMapping(value="/updateUser")
-	public void updateUser(HttpSession session, User user) {
+	public void updateUser(HttpSession session, @RequestBody User user) {
 		
 		if(session.getAttribute("user") != null) {
+			
+			session.setAttribute("user", user);
+			System.out.println(user);
 			userService.updateUserEmail(user);
 			userService.updateUserPassword(user);
 		}
@@ -50,7 +57,7 @@ public class UserControllerImpl implements UserController {
 
 	@Override
 	@PostMapping(value="/createUser")
-	public void createUser(User user) {
+	public void createUser(@RequestBody User user) {
 		
 		userService.insertUser(user);
 		
