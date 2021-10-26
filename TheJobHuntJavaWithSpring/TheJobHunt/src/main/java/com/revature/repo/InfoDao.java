@@ -3,10 +3,12 @@ package com.revature.repo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.revature.models.Information;
 import com.revature.models.User;
 
+@Repository
 public interface InfoDao extends JpaRepository<Information, Integer>{
 
 	
