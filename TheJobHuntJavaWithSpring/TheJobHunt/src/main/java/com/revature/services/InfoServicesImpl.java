@@ -15,6 +15,7 @@ public class InfoServicesImpl implements InfoServices {
 
 		@Autowired
 		private InfoDao infoDao;
+		
 
 		@Override
 		public Information saveUserInfo(Information info) {
@@ -24,65 +25,100 @@ public class InfoServicesImpl implements InfoServices {
 					}
 				if(success) {
 					return info;
+				} else {
+					return null;
 				}
 		}
 		
 
 		@Override
-		public boolean updateFirstName(Information info) {
+		public Information updateFirstName(Information info) {
 			boolean success = false;
 				if(infoDao.updateFirstName(info.getFirstName(), info.getUsers().getId())==1) {
 					success = true;
 				}
-			return success;
+				if(success) {
+					return info;
+				} else {
+					return null;
+				}
 		}
+		
 
 		@Override
-		public boolean updateLastName(Information info) {
+		public Information updateLastName(Information info) {
 			boolean success = false;
 				if(infoDao.updateLastName(info.getLastName(), info.getUsers().getId())==1) {
 					success = true;
 				}
-			return success;
+				if(success) {
+					return info;
+				} else {
+					return null;
+				}
 		}
 
 		@Override
-		public boolean updateStreet(Information info) {
+		public Information updateStreet(Information info) {
 			boolean success = false;
 				if(infoDao.updateStreet(info.getStreet(), info.getUsers().getId())==1) {
 					success = true;
 				}
-			return success;
+				if(success) {
+					return info;
+				} else {
+					return null;
+				}
 		}
 
 		@Override
-		public boolean updateCity(Information info) {
+		public Information updateCity(Information info) {
 			boolean success = false;
 				if(infoDao.updateCity(info.getCity(), info.getUsers().getId())==1) {
 					success = true;
 				}
-			return success;
+				if(success) {
+					return info;
+				} else {
+					return null;
+				}		
 		}
 
 		@Override
-		public boolean updateState(Information info) {
+		public Information updateState(Information info) {
 			boolean success = false;
 				if(infoDao.updateState(info.getState(), info.getUsers().getId())==1) {
 					success = true;
 				}
-			return success;
+				if(success) {
+					return info;
+				} else {
+					return null;
+				}
 		}
 
 		@Override
-		public boolean updateZipCode(Information info) {
+		public Information updateZipCode(Information info) {
 			boolean success = false;
 				if(infoDao.updateZipCode(info.getZip(), info.getUsers().getId())==1) {
 					success = true;
 				}
-			return success;
+				if(success) {
+					return info;
+				} else {
+					return null;
+				}
 		}
 
-		
 
+		@Override
+		public Information getInfoByUser(User user) {
+			Information info = infoDao.getByUser(user.getId()); 
+			if (info != null) {
+				return info;
+			} else {
+				return null;
+			}
+		}
 
 }

@@ -10,6 +10,6 @@ import com.revature.models.User;
 public interface InfoController {
 		
 	public Information getUserInfo(User user);
-	public Information changeSomeInfo(int id, Map<String, String> newInfo);
-	public Information changeAllUserInfo(int id, Map<String, String> newInfo);
+	public Information changeAllUserInfo(User user, Information changedInfo);
+	public Information changeSomeInfo(Information changedInfo);
 }
