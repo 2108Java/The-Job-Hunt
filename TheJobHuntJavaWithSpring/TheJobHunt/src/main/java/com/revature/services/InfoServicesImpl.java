@@ -17,12 +17,14 @@ public class InfoServicesImpl implements InfoServices {
 		private InfoDao infoDao;
 
 		@Override
-		public boolean saveUserInfo(Information info) {
+		public Information saveUserInfo(Information info) {
 				boolean success = false;
 					if(infoDao.save(info)) {
 						success = true;
 					}
-				return success;
+				if(success) {
+					return info;
+				}
 		}
 		
 
