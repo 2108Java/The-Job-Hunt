@@ -16,33 +16,34 @@ update info
 select info by id
 ﻿delete info
  */
+	
 	//void update(Information i);
 	//users_info(user_info_id, first_name, last_name, street, city, state, zip, user_id)
 	
 	
 	@Modifying
 	@Query("update Information i set i.firstName = ?1 where i.users.id = ?2")
-	void updateFirstName(String firstName, int userid);
+	int updateFirstName(String firstName, int userid);
 	
 	@Modifying
 	@Query("update Information i set i.lastName = ?1 where i.users.id = ?2")
-	void updateLastName(String lastName, int userId);
+	int updateLastName(String lastName, int userId);
 	
 	@Modifying
 	@Query("update Information i set i.street = ?1 where i.users.id  = ?2")
-	void updateStreet(String street, int userId);
+	int updateStreet(String street, int userId);
 	
 	@Modifying
 	@Query("update Information i set i.city = ?1 where i.users.id  = ?2")
-	void updateCity(String city, int userId);
+	int updateCity(String city, int userId);
 		
 	@Modifying
 	@Query("update Information i set i.state = ?1 where i.users.id  = ?2")
-	void updateState(String state, int userId);
+	int updateState(String state, int userId);
 	
 	@Modifying	
 	@Query("update Information i set i.zip = ?1 where i.users.id  = ?2")
-	void updateZipCode(int zipcode, int userId);
+	int updateZipCode(int zipcode, int userId);
 
 	
 }

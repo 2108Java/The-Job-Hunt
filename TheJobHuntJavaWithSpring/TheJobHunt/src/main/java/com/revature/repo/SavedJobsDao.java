@@ -15,8 +15,10 @@ update applied for
 select saved job
 delete job
 	 */
+	
+	
 	@Modifying
 	@Query("update Jobs j set j.appliedFor = ?1 where j.id = ?2")
-	void updateAppliedFor(boolean applied, int id);
+	int updateAppliedFor(boolean applied, int id);
 
 }
