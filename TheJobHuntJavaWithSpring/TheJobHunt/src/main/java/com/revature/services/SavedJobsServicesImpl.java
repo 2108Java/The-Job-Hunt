@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.Jobs;
+import com.revature.models.User;
 import com.revature.repo.SavedJobsDao;
 
 @Service("jobsService")
@@ -20,6 +21,8 @@ public class SavedJobsServicesImpl implements SavedJobsServices {
 		job.setId(-1);
 		
 		boolean success = false;
+		
+		
 		
 		if(jobsDao.save(job).getId()>0) {
 			success= true;
@@ -49,9 +52,9 @@ public class SavedJobsServicesImpl implements SavedJobsServices {
 	}
 
 	@Override
-	public List<Jobs> selectAllJobs() {
-		
-		return jobsDao.findAll();
+	public List<Jobs> selectAllJobs(User user) {
+
+		return jobsDao.findByUsers(user);
 	}
 
 }

@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserServices {
 	}
 
 	@Override
-	public boolean loginUser(User user) {
+	public User loginUser(User user) {
 		
 		boolean success= false;
 		User testUser = userExists(user);
@@ -53,8 +53,12 @@ public class UserServiceImpl implements UserServices {
 				success = true;
 			}
 		}
+		if(success) {
+			return testUser;
+		}else {
+			return null;
+		}
 		
-		return success;
 	}
  
 	@Override

@@ -20,8 +20,10 @@ public class UserControllerImpl implements UserController {
 	@Override
 	@PostMapping(value ="/login")
 	public User createSession(HttpSession session, @RequestBody User user) {
-		if(userService.loginUser(user)) {
-			session.setAttribute("user", user);
+		User loginUser = userService.loginUser(user);
+		if(loginUser!=null) {
+			System.out.println(loginUser);
+			session.setAttribute("user", loginUser);
 		}
 		return user;
 	}

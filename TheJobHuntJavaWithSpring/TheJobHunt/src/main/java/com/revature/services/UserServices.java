@@ -8,7 +8,7 @@ public interface UserServices {
 	
 	User userExists(User user);
 	
-	boolean loginUser(User user);
+	User loginUser(User user);
 	
 	boolean insertUser(User user);
 	

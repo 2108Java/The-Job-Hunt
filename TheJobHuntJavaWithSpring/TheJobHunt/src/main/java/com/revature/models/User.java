@@ -46,9 +46,9 @@ public class User {
 	
 	@Column(name = "user_pwd", nullable = false, unique = false)
 	private String userPassword;
-	
-	@OneToMany(mappedBy ="users")
-	private List<Jobs> jobs;
+//	
+//	@OneToMany(mappedBy ="users")
+//	private List<Jobs> jobs;
 
 	public int getId() {
 		return id;
@@ -73,18 +73,18 @@ public class User {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-
-	public List<Jobs> getJobs() {
-		return jobs;
-	}
-
-	public void setJobs(List<Jobs> jobs) {
-		this.jobs = jobs;
-	}
+//
+//	public List<Jobs> getJobs() {
+//		return jobs;
+//	}
+//
+//	public void setJobs(List<Jobs> jobs) {
+//		this.jobs = jobs;
+//	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", jobs=" + jobs
+		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", jobs=" 
 				+ "]";
 	}
 	

@@ -3,6 +3,7 @@ package com.revature.services;
 import java.util.List;
 
 import com.revature.models.Jobs;
+import com.revature.models.User;
 
 public interface SavedJobsServices {
 
@@ -15,5 +16,5 @@ public interface SavedJobsServices {
 	
 	void deleteJob(Jobs job);
 	
-	List<Jobs> selectAllJobs();
+	List<Jobs> selectAllJobs(User user);
 }
