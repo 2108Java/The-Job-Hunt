@@ -8,7 +8,7 @@ import { tap, delay } from 'rxjs/operators';
 export class AuthService {
   constructor() { }
   logout(): void {
-    localStorage.setItem('isLoggedIn', 'false');
-    localStorage.removeItem('token');
+    sessionStorage.setItem('isLoggedIn', 'false');
+    sessionStorage.removeItem('token');
   }
 }

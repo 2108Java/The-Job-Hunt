@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { AuthService } from './auth.service';
+import { Router, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
+import { AuthService } from './service/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +19,12 @@ export class AuthGuard implements CanActivate {
 
   public isLoggedIn(): boolean {      
    let status = false;      
-   if (localStorage.getItem('isLoggedIn') == "true") {      
+   if (sessionStorage.getItem('isLoggedIn') == "true") {      
       status = true;      
    }    
    else {      
       status = false;      
       }      
    return status;      
-   }    
+   }
 }

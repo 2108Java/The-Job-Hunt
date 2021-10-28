@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
+import { JobDetailsComponent } from './job-details/job-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'home', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard]},
   { path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
+  {path: 'jobDetails', component: JobDetailsComponent},
   { path: 'logout', redirectTo: '/login', pathMatch: 'full' },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**',   redirectTo: '/home', pathMatch: 'full' }

@@ -9,36 +9,51 @@
                     </div>
                     <div class="col-md-6 col-lg-7 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
-                            <form>
-                                <div class="d-flex align-items-center mb-3 pb-1">
-                                    <span class="h1 fw-bold mb-0">The Job Hunt &nbsp;</span>
-                                    <img src="../favicon.ico" alt="favicon" width="50" height="50"/>
+                            <form [formGroup]="loginform" (ngSubmit)="login()">
+                                <div class="row justify-content-left">
+                                    <div class="col-6 ">
+                                        <span class="h1 fw-bold mb-0">The Job Hunt</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <h1>Powered by:</h1>
+                                        <img src="../../assets/usajobs.png" alt="favicon" width="250" height="60" />
+                                    </div>
                                 </div>
 
-                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                                <h5 class="fw-normal mb-3 pb-3">Sign into your account</h5>
 
                                 <div class="form-outline mb-4">
                                     <input type="email" class="form-control form-control-lg"
-                                        placeholder="Email@Address.com" name="email" required
-                                        [(ngModel)]="currentUser.email" />
+                                        placeholder="Email@Address.com" formControlName="email" required />
                                     <label class="form-label" for="form2Example17">Email address</label>
+                                    <div *ngIf="loginform.controls['email'].invalid && loginform.controls['email'].touched"
+                                        class="alert alert-danger">
+                                        <span *ngIf="loginform.controls['email'].errors">
+                                            Email is required.
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="password" class="form-control form-control-lg" placeholder="Password"
-                                        name="password" required [(ngModel)]="currentUser.password" />
+                                        formControlName="password" required />
                                     <label class="form-label" for="form2Example27">Password</label>
+                                    <div *ngIf="loginform.controls['password'].invalid && loginform.controls['password'].touched"
+                                        class="alert alert-danger">
+                                        <span *ngIf="loginform.controls['password'].errors">
+                                            Email is required.
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div class="pt-1 mb-4">
-                                    <button class="btn btn-dark btn-lg btn-block" type="button"
-                                        (click)="login()">Login</button>
+                                    <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                                 </div>
 
                                 <!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
-                                <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a
-                                        routerLink="/register" style="color: #393f81;">Register here</a></p>
-                            </form>
+                                <p class="mb-5 pb-lg-2">Don't have an account? <a
+                                        routerLink="/register">Register here</a></p>
+                                </form>
 
                         </div>
                     </div>
