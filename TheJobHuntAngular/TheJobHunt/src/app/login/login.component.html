@@ -1,0 +1,64 @@
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+            <div class="card" style="border-radius: 1rem;">
+                <div class="row g-0">
+                    <div class="col-md-6 col-lg-5 d-none d-md-block">
+                        <img src="../../assets/loginphoto.jpg" alt="login form" class="img-fluid"
+                            style="border-radius: 1rem 0 0 1rem;" />
+                    </div>
+                    <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+                            <form [formGroup]="loginform" (ngSubmit)="login()">
+                                <div class="row justify-content-left">
+                                    <div class="col-6 ">
+                                        <span class="h1 fw-bold mb-0">The Job Hunt</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <h1>Powered by:</h1>
+                                        <img src="../../assets/usajobs.png" alt="favicon" width="250" height="60" />
+                                    </div>
+                                </div>
+
+                                <h5 class="fw-normal mb-3 pb-3">Sign into your account</h5>
+
+                                <div class="form-outline mb-4">
+                                    <input type="email" class="form-control form-control-lg"
+                                        placeholder="Email@Address.com" formControlName="email" required />
+                                    <label class="form-label" for="form2Example17">Email address</label>
+                                    <div *ngIf="loginform.controls['email'].invalid && loginform.controls['email'].touched"
+                                        class="alert alert-danger">
+                                        <span *ngIf="loginform.controls['email'].errors">
+                                            Email is required.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" class="form-control form-control-lg" placeholder="Password"
+                                        formControlName="password" required />
+                                    <label class="form-label" for="form2Example27">Password</label>
+                                    <div *ngIf="loginform.controls['password'].invalid && loginform.controls['password'].touched"
+                                        class="alert alert-danger">
+                                        <span *ngIf="loginform.controls['password'].errors">
+                                            Email is required.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="pt-1 mb-4">
+                                    <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+                                </div>
+
+                                <!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
+                                <p class="mb-5 pb-lg-2">Don't have an account? <a
+                                        routerLink="/register">Register here</a></p>
+                                </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
