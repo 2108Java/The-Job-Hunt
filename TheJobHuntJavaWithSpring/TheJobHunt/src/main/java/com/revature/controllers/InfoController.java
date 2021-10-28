@@ -11,7 +11,7 @@ import com.revature.models.User;
 
 public interface InfoController {
 		
-	public Information changeSomeInfo(Information changedInfo);
 	public Information changeAllUserInfo(HttpSession session, Information changedInfo);
 	public Information getUserInfo(HttpSession session);
+	public Information changeSomeInfo(HttpSession session, Information changedInfo);
 }

@@ -3,6 +3,7 @@ package com.revature.controllers;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,23 +28,12 @@ public class InfoControllerImpl implements InfoController {
 	
 	private Information info = new Information();
 	
-	@GetMapping(value = "/test")
-	public Information getTest() {
-
-	this.info.setFirstName("Faker");
-	this.info.setLastName("McFake");
-	this.info.setStreet("123 Oak");
-	this.info.setCity("Metro City");
-	this.info.setState("OR");
-	this.info.setZip(97500);
-	return this.info;
-	}
-	
 	
 	@Override
-	@GetMapping(value = "/more")
+	@GetMapping(value = "/myInfo")
 	public Information getUserInfo(HttpSession session) {
 		User u = (User) session.getAttribute("user");
+		System.out.println(u);
 		this.info = infoService.getInfoByUser(u);
 		System.out.println(this.info);
 		return this.info;
@@ -53,7 +43,7 @@ public class InfoControllerImpl implements InfoController {
 	
 	
 	@Override
-	@PostMapping(value = "/info")
+	@PostMapping(value = "/myInfo")
 	public Information changeAllUserInfo(HttpSession session, @RequestBody Information changedInfo) { //do I need List<K,V> as arg datatype? or will it auto-marshal?
 		changedInfo.setUsers((User) session.getAttribute("user"));
 		System.out.println(changedInfo);
@@ -64,32 +54,39 @@ public class InfoControllerImpl implements InfoController {
 	
 	
 	@Override
-	@PutMapping(value = "/info")
-	public Information changeSomeInfo( @RequestBody Information changedInfo) {
+	@Transactional
+	@PutMapping(value = "/myInfo")
+	public Information changeSomeInfo(HttpSession session, @RequestBody Information changedInfo) {
+		
+		User u = (User) session.getAttribute("user");
+		System.out.println(u);
+		
+		changedInfo.setUsers(u);
 		
 		if(changedInfo.getFirstName() != null) {
-		return infoService.updateFirstName(changedInfo);
+			infoService.updateFirstName(changedInfo);
 			}
 		
 		if(changedInfo.getLastName() != null) {
-			return infoService.updateLastName(changedInfo);
+			infoService.updateLastName(changedInfo);
 			}
 		
 		if(changedInfo.getStreet() != null) {
-			return infoService.updateStreet(changedInfo);
+			infoService.updateStreet(changedInfo);
 			}
 	
 		if(changedInfo.getCity() != null) {
-			return infoService.updateCity(changedInfo);
+			infoService.updateCity(changedInfo);
 			}
 		
 		if(changedInfo.getState() != null) {
-			return infoService.updateState(changedInfo);
+			infoService.updateState(changedInfo);
 			}
 	
-//		if(changedInfo.getZip()  null) { // we may need to change the datatype of ZipCode from int to String, because int will likely delete prefix zeros ... 
-//			return infoService.updateZipCode(changedInfo);
-//			}
-		return changedInfo;
+		if(changedInfo.getZip() != 0 && changedInfo.getZip() < 99999) {
+			infoService.updateZipCode(changedInfo);
+			}
+		
+		return getUserInfo(session);
 	}
 }
