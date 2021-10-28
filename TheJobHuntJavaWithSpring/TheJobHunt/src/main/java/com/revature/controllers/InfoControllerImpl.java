@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +25,27 @@ public class InfoControllerImpl implements InfoController {
 	@Autowired
 	private InfoServicesImpl infoService;
 	
-	@Autowired
-	private Information info;
+	private Information info = new Information();
 	
+	@GetMapping(value = "/test")
+	public Information getTest() {
 
+	this.info.setFirstName("Faker");
+	this.info.setLastName("McFake");
+	this.info.setStreet("123 Oak");
+	this.info.setCity("Metro City");
+	this.info.setState("OR");
+	this.info.setZip(97500);
+	return this.info;
+	}
+	
+	
 	@Override
-	@GetMapping(value = "/info")
-	public Information getUserInfo( @RequestBody User user) {
-		this.info = infoService.getInfoByUser(user);
+	@GetMapping(value = "/more")
+	public Information getUserInfo(HttpSession session) {
+		User u = (User) session.getAttribute("user");
+		this.info = infoService.getInfoByUser(u);
+		System.out.println(this.info);
 		return this.info;
 		
 	}
@@ -39,8 +54,11 @@ public class InfoControllerImpl implements InfoController {
 	
 	@Override
 	@PostMapping(value = "/info")
-	public Information changeAllUserInfo(@RequestBody User user, @RequestBody Information changedInfo) { //do I need List<K,V> as arg datatype? or will it auto-marshal?
+	public Information changeAllUserInfo(HttpSession session, @RequestBody Information changedInfo) { //do I need List<K,V> as arg datatype? or will it auto-marshal?
+		changedInfo.setUsers((User) session.getAttribute("user"));
+		System.out.println(changedInfo);
 		return infoService.saveUserInfo(changedInfo);
+		
 	}
 
 	

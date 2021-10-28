@@ -20,6 +20,7 @@ public class InfoServicesImpl implements InfoServices {
 		@Override
 		public Information saveUserInfo(Information info) {
 				boolean success = false;
+					info.setId(-1);
 					if(infoDao.save(info).getId()>0) {
 						success = true;
 					}
@@ -113,7 +114,7 @@ public class InfoServicesImpl implements InfoServices {
 
 		@Override
 		public Information getInfoByUser(User user) {
-			Information info = infoDao.getByUser(user.getId()); 
+			Information info = infoDao.getByUsers(user.getId()); 
 			if (info != null) {
 				return info;
 			} else {
