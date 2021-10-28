@@ -73,18 +73,11 @@ public class User {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-//
-//	public List<Jobs> getJobs() {
-//		return jobs;
-//	}
-//
-//	public void setJobs(List<Jobs> jobs) {
-//		this.jobs = jobs;
-//	}
+
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", jobs=" 
+		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword 
 				+ "]";
 	}
 	

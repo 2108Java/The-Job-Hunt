@@ -12,7 +12,9 @@ public interface UserController {
 	
 	User validateSession(HttpSession session);
 	
-	void updateUser(HttpSession session, User user);
+	void updateUserPassword(HttpSession session, User user);
+	
+	void updateUserEmail(HttpSession session, User user);
 	
 	void createUser(User user);
 	

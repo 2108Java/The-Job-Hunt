@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserServices {
 		User testUser = userExists(user);
 		
 		if (testUser!=null) {
-			if(user.getUserEmail().equals(testUser.getUserEmail())) {
+			if(user.getUserPassword().equals(testUser.getUserPassword())) {
 				success = true;
 			}
 		}
