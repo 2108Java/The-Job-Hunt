@@ -68,6 +68,7 @@ public class SavedJobsControllerImpl implements SavedJobsController {
 	public void updateAppliedJob(HttpSession session, @RequestBody Jobs job) {
 		User user = (User) session.getAttribute("user");
 		if(user != null) {
+			job.setUsers(user);
 		jobService.updateAppliedJobs(job);
 		}
 
