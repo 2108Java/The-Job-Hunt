@@ -24,41 +24,57 @@ public class SavedJobsControllerImpl implements SavedJobsController {
 	@Override
 	@GetMapping(value = "/getJob")
 	public Jobs selectSingleJob(HttpSession session, @RequestBody Jobs job) {
+		User user = (User) session.getAttribute("user");
 		
-		System.out.println(job);
+		if (user!=null) {
+			return jobService.selectJob(job.getId());
+		}else {
+			return null;
+		}
 		
-		return jobService.selectJob(job.getId());
 	}
 
 	@Override
 	@GetMapping(value = "/getAllJobs")
 	public List<Jobs> allTheJobs(HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		System.out.println(user);
-		return jobService.selectAllJobs(user);
+		if(user != null) {
+			return jobService.selectAllJobs(user);
+		}else {
+			return null;
+		}
 	}
 
 	@Override
 	@PostMapping(value ="/addJob")
 	public boolean addJob(HttpSession session,@RequestBody Jobs job) {
-	
-		System.out.println(job);
-		return jobService.createJob(job);
+		User user = (User) session.getAttribute("user");
+		if(user != null) {
+			return jobService.createJob(job);
+		}else {
+			return false;
+		}
+		
+		
 	}
 
 	@Override
 	@PutMapping(value="/updateJob")
-	public void updateAppliedJob(@RequestBody Jobs job) {
+	public void updateAppliedJob(HttpSession session, @RequestBody Jobs job) {
+		User user = (User) session.getAttribute("user");
+		if(user != null) {
 		jobService.updateAppliedJobs(job);
+		}
 
 	}
 
 	@Override
 	@DeleteMapping(value= "/deleteJob")
-	public void deleteJob(@RequestBody Jobs job) {
-		
+	public void deleteJob(HttpSession session, @RequestBody Jobs job) {
+		User user = (User) session.getAttribute("user");
+		if(user != null) {
 		jobService.deleteJob(job);
-
+		}
 	}
 
 }

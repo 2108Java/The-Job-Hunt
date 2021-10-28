@@ -15,9 +15,9 @@ public interface SavedJobsController {
 	
 	public boolean addJob(HttpSession session, Jobs job);
 	
-	public void updateAppliedJob(Jobs job);
+	public void updateAppliedJob(HttpSession session, Jobs job);
 	
-	public void deleteJob(Jobs job);
+	public void deleteJob(HttpSession session, Jobs job);
 	
 	
 
