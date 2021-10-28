@@ -19,7 +19,7 @@ public class InfoServicesImpl implements InfoServices {
 		@Override
 		public boolean saveUserInfo(Information info) {
 				boolean success = false;
-					if(infoDao.save(info)) {
+					if(infoDao.save(info).getId()>0) {
 						success = true;
 					}
 				return success;
@@ -29,7 +29,7 @@ public class InfoServicesImpl implements InfoServices {
 		@Override
 		public boolean updateFirstName(Information info) {
 			boolean success = false;
-				if(infoDao.updateFirstName(info.firstName, info.users.id)) {
+				if(infoDao.updateFirstName(info.getFirstName(), info.getUsers().getId())==1) {
 					success = true;
 				}
 			return success;
@@ -38,7 +38,7 @@ public class InfoServicesImpl implements InfoServices {
 		@Override
 		public boolean updateLastName(Information info) {
 			boolean success = false;
-				if(infoDao.updateLastName(info.lastName, info.users.id)) {
+				if(infoDao.updateLastName(info.getLastName(), info.getUsers().getId())==1) {
 					success = true;
 				}
 			return success;
@@ -47,7 +47,7 @@ public class InfoServicesImpl implements InfoServices {
 		@Override
 		public boolean updateStreet(Information info) {
 			boolean success = false;
-				if(infoDao.updateStreet(info.street, info.users.id)) {
+				if(infoDao.updateStreet(info.getStreet(), info.getUsers().getId())==1) {
 					success = true;
 				}
 			return success;
@@ -56,7 +56,7 @@ public class InfoServicesImpl implements InfoServices {
 		@Override
 		public boolean updateCity(Information info) {
 			boolean success = false;
-				if(infoDao.updateCity(info.city, info.users.id)) {
+				if(infoDao.updateCity(info.getCity(), info.getUsers().getId())==1) {
 					success = true;
 				}
 			return success;
@@ -65,7 +65,7 @@ public class InfoServicesImpl implements InfoServices {
 		@Override
 		public boolean updateState(Information info) {
 			boolean success = false;
-				if(infoDao.updateState(info.state, info.users.id)) {
+				if(infoDao.updateState(info.getState(), info.getUsers().getId())==1) {
 					success = true;
 				}
 			return success;
@@ -74,7 +74,7 @@ public class InfoServicesImpl implements InfoServices {
 		@Override
 		public boolean updateZipCode(Information info) {
 			boolean success = false;
-				if(infoDao.updateZipCode(info.zip, info.users.id)) {
+				if(infoDao.updateZipCode(info.getZip(), info.getUsers().getId())==1) {
 					success = true;
 				}
 			return success;
