@@ -6,6 +6,6 @@ import { Job } from '../models/Job';
 })
 export class JobService {
   public currentJob: Job | any;
-  public currentSearchList: Job[] | null = null;
+  public currentSearchList: Job[] | any;
   constructor() { }
 }
