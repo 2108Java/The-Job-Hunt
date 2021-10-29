@@ -11,10 +11,15 @@ import javax.persistence.ManyToOne;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@SuppressWarnings("deprecation")
+@JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -43,9 +48,31 @@ public class Jobs {
 	private User users;
 	//int userIdFk;
 	
-	@Column(name = "job_id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int jobId;
+	@Column(name = "MatchedObjectId")
+	private int MatchedObjectId;
+	
+	@Column(name = "PositionTitle")
+	private String PositionTitle;
+	
+	@Column(name = "PostionLocationDisplay")
+	private String PostionLocationDisplay;
+	
+	@Column(name = "AgencyMarketingStatement")
+	private String AgencyMarketingStatement;
+	
+	@Column(name = "Evaluations")
+	private String Evaluations;
+	
+	@Column(name = "JobSummary")
+	private String JobSummary;
+	
+	@Column(name = "OtherInformation")
+	private String OtherInformation;
+	
+	@Column(name = "Requirements")
+	private String Requirements;
+	
+	
 	
 	@Column(name = "applied_for")
 	private boolean appliedFor;
@@ -67,11 +94,11 @@ public class Jobs {
 	}
 
 	public int getJobId() {
-		return jobId;
+		return MatchedObjectId;
 	}
 
 	public void setJobId(int jobId) {
-		this.jobId = jobId;
+		this.MatchedObjectId = jobId;
 	}
 
 	public boolean isAppliedFor() {
@@ -84,7 +111,7 @@ public class Jobs {
 
 	@Override
 	public String toString() {
-		return "Jobs [Id=" + Id + ", users=" + users + ", jobId=" + jobId + ", appliedFor=" + appliedFor + "]";
+		return "Jobs [Id=" + Id + ", users=" + users + ", jobId=" + MatchedObjectId + ", appliedFor=" + appliedFor + "]";
 	}
 	
 	
