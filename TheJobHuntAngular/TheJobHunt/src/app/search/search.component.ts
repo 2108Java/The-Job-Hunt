@@ -21,23 +21,28 @@ export class SearchComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private searchService: SearchService, private jobService: JobService, private router: Router,private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    if(this.jobService.currentSearchList != null && this.jobService.currentSearchList.length > 0){
+    
+    this.getAllJobs();
+    //this.jobService.currentSearchList = this.searchService.getSearch(this.searchTerm);
+    
+
+    //if(this.jobService.currentSearchList == null && this.jobService.currentSearchList.length > 0){
     this.JobList = this.jobService.currentSearchList;
     this.jobService.currentSearchList = null;
-    }
+    ///}
   }
-  searchbar = this.formBuilder.group({
-    searchString: ""
-  });
+  //searchbar = this.formBuilder.group({
+  ///  searchString:""
+  //});
+  searchTerm ="";
 
   getAllJobs() {
-    this.JobList = this.searchService.getSearch(this.searchbar.get("searchString")!.value);
-
+    this.JobList = this.searchService.getSearch(this.searchTerm);
   }
 
   public selectJob(job: Job) {
     this.jobService.currentJob=job;
-    this.router.navigate(['/jobDetails']);
+    //this.router.navigate(['/jobDetails']);
   }
 
 }
