@@ -43,26 +43,29 @@ public class UserServiceImpl implements UserServices {
 	}
 
 	@Override
-	public boolean loginUser(User user) {
+	public User loginUser(User user) {
 		
 		boolean success= false;
 		User testUser = userExists(user);
 		
 		if (testUser!=null) {
-			if(user.getUserEmail().equals(testUser.getUserEmail())) {
+			if(user.getUserPassword().equals(testUser.getUserPassword())) {
 				success = true;
 			}
 		}
+		if(success) {
+			return testUser;
+		}else {
+			return null;
+		}
 		
-		return success;
 	}
-
+ 
 	@Override
 	public boolean insertUser(User user) {
 		boolean success = false;
 		
 //		createUser(user);
-		success = true;
 		
 		if(userDao.save(user).getId()>0) {
 			success= true;
