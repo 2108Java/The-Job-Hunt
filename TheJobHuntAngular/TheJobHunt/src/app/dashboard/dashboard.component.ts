@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../service/search.service';
 import { Router } from '@angular/router';
 import { JobService } from '../service/job.service';
 import { FormBuilder } from '@angular/forms';
@@ -11,14 +10,14 @@ import { FormBuilder } from '@angular/forms';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private searchService: SearchService, private jobService: JobService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private jobService: JobService, private router: Router, private formBuilder: FormBuilder) { }
   ngOnInit() {
   }
   dashboardSearch = this.formBuilder.group({
     dashboardSearchString: ""
   });
   public searchForJob() {
-    this.jobService.currentSearchList = this.searchService.getSearch(this.dashboardSearch.get("dashboardSearchString")!.value);
+    this.jobService.currentSearchString = this.dashboardSearch.get("dashboardSearchString")!.value;
     this.router.navigate(['/search']);
   }
 

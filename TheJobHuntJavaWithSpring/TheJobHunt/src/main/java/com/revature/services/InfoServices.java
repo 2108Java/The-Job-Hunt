@@ -1,16 +1,18 @@
 package com.revature.services;
 
 import com.revature.models.Information;
+import com.revature.models.User;
 
 public interface InfoServices {
 
 	
-	public boolean saveUserInfo(Information info);
-	public boolean updateFirstName(Information info);
-	public boolean updateLastName(Information info);
-	public boolean updateStreet(Information info);
-	public boolean updateCity(Information info);
-	public boolean updateState(Information info);
-	public boolean updateZipCode(Information info);
+	public Information saveUserInfo(Information info);
+	public Information updateFirstName(Information info);
+	public Information updateLastName(Information info);
+	public Information updateStreet(Information info);
+	public Information updateCity(Information info);
+	public Information updateState(Information info);
+	public Information updateZipCode(Information info);
+	public Information getInfoByUser(User user);
 	
 }

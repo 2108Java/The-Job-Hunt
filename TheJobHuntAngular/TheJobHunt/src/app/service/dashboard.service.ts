@@ -12,7 +12,7 @@ export class DashboardService {
   constructor(private searchService:SearchService,private jobService:JobService,private router:Router) { }
 
   public searchForJob(searchString:string) {
-    this.jobService.currentSearchList= this.searchService.getSearch(searchString);
+    // this.jobService.currentSearchList= this.searchService.getSearch(searchString);
     this.router.navigate(['/search']);
   }
 }

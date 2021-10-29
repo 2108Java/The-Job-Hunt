@@ -15,12 +15,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,9 +48,9 @@ public class User {
 	
 	@Column(name = "user_pwd", nullable = false, unique = false)
 	private String userPassword;
-	
-	@OneToMany(mappedBy ="users")
-	private List<Jobs> jobs;
+//	
+//	@OneToMany(mappedBy ="users")
+//	private List<Jobs> jobs;
 
 	public int getId() {
 		return id;
@@ -74,17 +76,10 @@ public class User {
 		this.userPassword = userPassword;
 	}
 
-	public List<Jobs> getJobs() {
-		return jobs;
-	}
-
-	public void setJobs(List<Jobs> jobs) {
-		this.jobs = jobs;
-	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", jobs=" + jobs
+		return "User [id=" + id + ", userEmail=" + userEmail + ", userPassword=" + userPassword 
 				+ "]";
 	}
 	
