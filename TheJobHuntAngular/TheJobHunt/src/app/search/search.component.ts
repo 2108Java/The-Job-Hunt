@@ -25,30 +25,6 @@ export class SearchComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private searchService: SearchService, private jobService: JobService, private router: Router) { }
 
   ngOnInit(): void {
-<<<<<<< HEAD
-    
-    this.getAllJobs();
-    //this.jobService.currentSearchList = this.searchService.getSearch(this.searchTerm);
-    
-
-    //if(this.jobService.currentSearchList == null && this.jobService.currentSearchList.length > 0){
-    this.JobList = this.jobService.currentSearchList;
-    this.jobService.currentSearchList = null;
-    ///}
-  }
-  //searchbar = this.formBuilder.group({
-  ///  searchString:""
-  //});
-  searchTerm ="";
-
-  getAllJobs() {
-    this.JobList = this.searchService.getSearch(this.searchTerm);
-  }
-
-  public selectJob(job: Job) {
-    this.jobService.currentJob=job;
-    //this.router.navigate(['/jobDetails']);
-=======
     if (this.searchbar.get("searchString")!.value != null) {
       this.getAllJobs();
     }
@@ -71,7 +47,7 @@ export class SearchComponent implements OnInit {
   public selectJob(job: Job) {
     this.jobService.currentJob = job;
     this.router.navigate(['/jobDetails']);
->>>>>>> 340a75bafbb1132169c4b810d0823d381fa5f86a
+
   }
 
 }
