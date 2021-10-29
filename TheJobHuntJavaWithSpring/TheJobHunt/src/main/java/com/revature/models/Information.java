@@ -22,17 +22,20 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "users_info")
 public class Information {
+
 
 	@Id
 	@Column(name = "user_info_id")
@@ -62,6 +65,7 @@ public class Information {
 	
 	@Column(name = "zip", nullable = false, unique = false)
 	private int zip;
+
 
 	public int getId() {
 		return Id;

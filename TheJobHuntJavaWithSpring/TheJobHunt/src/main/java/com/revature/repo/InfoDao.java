@@ -45,5 +45,5 @@ select info by id
 	@Query("update Information i set i.zip = ?1 where i.users.id  = ?2")
 	int updateZipCode(int zipcode, int userId);
 
-	
+	Information findByUsers(User user);
 }
