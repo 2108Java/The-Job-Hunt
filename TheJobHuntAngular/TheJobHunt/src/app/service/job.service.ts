@@ -5,7 +5,6 @@ import { Job } from '../models/Job';
   providedIn: 'root'
 })
 export class JobService {
-  public currentJob: Job | any;
-  public currentSearchList: Job[] | any;
-  constructor() { }
+  public currentJob!: Job;
+  currentSearchString!: string;
 }
