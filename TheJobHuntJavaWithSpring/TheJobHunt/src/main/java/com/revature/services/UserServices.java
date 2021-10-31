@@ -4,7 +4,6 @@ import com.revature.models.User;
 
 public interface UserServices {
 
-	boolean authenticate(User user);
 	
 	User userExists(User user);
 	
