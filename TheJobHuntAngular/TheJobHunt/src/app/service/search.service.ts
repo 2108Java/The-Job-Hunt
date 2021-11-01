@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JobService } from './job.service';
 import { fakeJob } from '../search/search.component';
+import { SavedJob } from '../models/SavedJob';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,44 +17,39 @@ export class SearchService {
   currentPageTotal: number = 0;
 
 
-  constructor(private httpClient: HttpClient, private jobService:JobService) { }
+  constructor(private httpClient: HttpClient, private jobService: JobService) { }
 
   searchAPI(searchString: string): Observable<Job[]> {
     let fullSearch: string = this.BASE_SEARCH + searchString;
-    // let jobs: Observable<Job[]> = this.httpClient.get<fakeJobList>(fullSearch, {
-    //   'headers': this.HEADERS
-    // });
-    
-    // jobs.subscribe(
-    //   (data) => {
-    //     let obj: any = data;
-    //     this.jobService.currentSearchList = obj.SearchResult.SearchResultItems;
-    //     this.currentPageTotal = obj.SearchResult.UserArea.NumberOfPages;
-        
-    //   }
-    // );
-    // this.currentPage = 1;
-    // console.log("OUTSIDE: " + this.jobService.currentSearchList)
-    // console.log("OUTSIDE: "+ this.currentPageTotal);
-    // return this.jobService.currentSearchList;
-return this.httpClient.get<Job[]>(fullSearch, {
-  'headers': this.HEADERS
-});
+    return this.httpClient.get<Job[]>(fullSearch, {
+      'headers': this.HEADERS
+    });
   }
 
   getSearch(searchString: string): Observable<Job[]> {
     this.currentPage = 0;
     this.currentSearch = "Keyword=" + searchString;
     console.log(this.currentSearch);
-    if (false /* other search conditions applied */) {
-      //do a method to appnd searches
-    }
+    // if (false /* other search conditions applied */) {
+    //   //do a method to appnd searches
+    // }
 
     return this.searchAPI(this.currentSearch);
   }
 
-  getJobByID() {
-
+  addJob(job:Job) {
+    return this.httpClient.post("http://localhost:8000/jobs/addJob",
+    {
+      "MatchedObjectId": job.MatchedObjectId,
+      "PositionTitle": job.MatchedObjectDescriptor.PositionTitle,
+      "PostionLocationDisplay": job.MatchedObjectDescriptor.PositionLocationDisplay,
+      "AgencyMarketingStatement": job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement,
+      "Evaluations": job.MatchedObjectDescriptor.UserArea.Details.Evaluations,
+      "JobSummary": job.MatchedObjectDescriptor.UserArea.Details.JobSummary,
+      "OtherInformation": job.MatchedObjectDescriptor.UserArea.Details.OtherInformation,
+      "Requirements": job.MatchedObjectDescriptor.UserArea.Details.Requirements
+    }, {withCredentials: true,observe: 'response' as 'response'}
+    );
   }
 
   // changePage(pageValue: number):Observable<Job[]> {

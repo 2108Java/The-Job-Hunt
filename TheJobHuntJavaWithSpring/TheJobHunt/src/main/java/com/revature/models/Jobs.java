@@ -1,6 +1,5 @@
 package com.revature.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,7 +48,7 @@ public class Jobs {
 	//int userIdFk;
 	
 	@Column(name = "MatchedObjectId")
-	private int MatchedObjectId;
+	private String MatchedObjectId;
 	
 	@Column(name = "PositionTitle")
 	private String PositionTitle;
@@ -57,16 +56,16 @@ public class Jobs {
 	@Column(name = "PostionLocationDisplay")
 	private String PostionLocationDisplay;
 	
-	@Column(name = "AgencyMarketingStatement")
+	@Column(name = "AgencyMarketingStatement", length=25000)
 	private String AgencyMarketingStatement;
 	
-	@Column(name = "Evaluations")
+	@Column(name = "Evaluations", length=25000)
 	private String Evaluations;
 	
-	@Column(name = "JobSummary")
+	@Column(name = "JobSummary", length=25000)
 	private String JobSummary;
 	
-	@Column(name = "OtherInformation")
+	@Column(name = "OtherInformation", length=25000)
 	private String OtherInformation;
 	
 	@Column(name = "Requirements")
@@ -74,6 +73,70 @@ public class Jobs {
 	
 	
 	
+	public String getMatchedObjectId() {
+		return MatchedObjectId;
+	}
+
+	public void setMatchedObjectId(String matchedObjectId) {
+		MatchedObjectId = matchedObjectId;
+	}
+
+	public String getPositionTitle() {
+		return PositionTitle;
+	}
+
+	public void setPositionTitle(String positionTitle) {
+		PositionTitle = positionTitle;
+	}
+
+	public String getPostionLocationDisplay() {
+		return PostionLocationDisplay;
+	}
+
+	public void setPostionLocationDisplay(String postionLocationDisplay) {
+		PostionLocationDisplay = postionLocationDisplay;
+	}
+
+	public String getAgencyMarketingStatement() {
+		return AgencyMarketingStatement;
+	}
+
+	public void setAgencyMarketingStatement(String agencyMarketingStatement) {
+		AgencyMarketingStatement = agencyMarketingStatement;
+	}
+
+	public String getEvaluations() {
+		return Evaluations;
+	}
+
+	public void setEvaluations(String evaluations) {
+		Evaluations = evaluations;
+	}
+
+	public String getJobSummary() {
+		return JobSummary;
+	}
+
+	public void setJobSummary(String jobSummary) {
+		JobSummary = jobSummary;
+	}
+
+	public String getOtherInformation() {
+		return OtherInformation;
+	}
+
+	public void setOtherInformation(String otherInformation) {
+		OtherInformation = otherInformation;
+	}
+
+	public String getRequirements() {
+		return Requirements;
+	}
+
+	public void setRequirements(String requirements) {
+		Requirements = requirements;
+	}
+
 	@Column(name = "applied_for")
 	private boolean appliedFor;
 
@@ -93,11 +156,11 @@ public class Jobs {
 		this.users = users;
 	}
 
-	public int getJobId() {
+	public String getJobId() {
 		return MatchedObjectId;
 	}
 
-	public void setJobId(int jobId) {
+	public void setJobId(String jobId) {
 		this.MatchedObjectId = jobId;
 	}
 

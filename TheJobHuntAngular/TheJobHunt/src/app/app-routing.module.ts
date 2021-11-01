@@ -15,7 +15,6 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard]},
   { path: 'search', component: SearchComponent, canActivate: [AuthGuard]},
   {path: 'jobDetails', component: JobDetailsComponent},
-  { path: 'logout', redirectTo: '/login', pathMatch: 'full' },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**',   redirectTo: '/home', pathMatch: 'full' }
 ];

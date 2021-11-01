@@ -1,7 +1,7 @@
 // Module Imports
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 // Component Imports
@@ -21,8 +21,6 @@ import { SearchService } from './service/search.service';
 import { DashboardService } from './service/dashboard.service';
 import { RegisterService } from './service/register.service';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,12 +36,12 @@ import { RegisterService } from './service/register.service';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
   providers: [
     DataService,
     JobService,
-    AuthService,  
+    AuthService,
     LoginService,
     SearchService,
     DashboardService,

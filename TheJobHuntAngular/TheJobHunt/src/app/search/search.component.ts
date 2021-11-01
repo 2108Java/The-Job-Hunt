@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Job } from '../models/Job';
-import { HttpHeaders } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SearchService } from '../service/search.service';
 import { Router } from '@angular/router';
@@ -41,7 +40,7 @@ export class SearchComponent implements OnInit {
         console.log(this.JobList);
       }
     );
-
+    this.jobService
   }
 
   public selectJob(job: Job) {

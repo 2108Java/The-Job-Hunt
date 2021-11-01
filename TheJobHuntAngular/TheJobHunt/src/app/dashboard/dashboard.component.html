@@ -1,34 +1,28 @@
 <p>their list of jobs, welcome summary, searchbar</p>
-<div class="container">
-    <div>
-        <!-- <h1>Hello, {{currentInfo.firstName}}!</h1> -->
-        <h1>hello</h1>
+<div class="container col-xl-10">
+    <div class="row justify-content-center">
+        <h1>Hello and Welcome to The Job Hunt, {{user.userEmail}}!</h1>
     </div>
-    <div>
-        <p>Welcome to The Job Hunt!</p>
-    </div>
-    <div>
+    <div class="row justify-content-center">
         <form class="d-flex" [formGroup]="dashboardSearch" (ngSubmit)="searchForJob()">
             <input class="form-control me-2" type="search" placeholder="Search" formControlName="dashboardSearchString">
             <button class="btn btn-outline-success">Search</button>
-          </form>
+        </form>
     </div>
     <div>
         <table>
             <thead>
-                <th>PositionTitle</th>
-                <th>PositionLocation-LocationName</th>
-                <th>OrganizationName</th>
-                <th>Applied?</th>
-                <th>Delete</th>
+                <tr>
+                    <th>Position Title</th>
+                    <th>Applied?</th>
+                    <th>Delete</th>
+                </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td>Test</td>
-                    <td><button>I'm a button</button></td>
+                <tr *ngFor="let job of savedJobsList">
+                    <td>{{job.PositionTitle}}</td>
+                    <td>{{job.AppliedFor}}</td>
+                    <td (click)="deleteJob(job.Id)"><button>I'm a button</button></td>
                 </tr>
             </tbody>
         </table>
