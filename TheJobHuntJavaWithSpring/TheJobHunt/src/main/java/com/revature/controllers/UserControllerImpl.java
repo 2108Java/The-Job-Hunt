@@ -73,10 +73,10 @@ public class UserControllerImpl implements UserController {
 	}
 	@Override
 	@PostMapping(value="/createUser")
-	public void createUser(@RequestBody User user) {
+	public User createUser(@RequestBody User user) {
 		
-		userService.insertUser(user);
-		
+		user = userService.insertUser(user);
+		return user;
 	}
 
 

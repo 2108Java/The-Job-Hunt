@@ -13,6 +13,8 @@ import { RegisterService } from '../service/register.service';
 })
 export class RegisterComponent implements OnInit {
   returnUrl: string | any;
+  currentUser!: User;
+  currentUserInfo!: UserInformation;
 
   constructor(
     private router: Router,
@@ -34,14 +36,16 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = '/login';
+    this.currentUser = this.dataService.user;
+    this.currentUserInfo = this.dataService.userInfo;
   }
 
-  onSubmit() {
+  async onSubmit() {
     //no need to make form submission into TS objects;
     // just send raw json/txt (see the discord eg, like in postman)
     // it goes in the body
     if (this.registerform.valid) {
-      
+
       // let formString = JSON.stringify(this.registerform);
       // let parsedForm = JSON.parse(formString);
       // let unregisteredUser = new User(-1, parsedForm.email, parsedForm.password);
@@ -54,13 +58,13 @@ export class RegisterComponent implements OnInit {
       //         parsedForm.state,
       //         parsedForm.zip);
 
-      let newUser = new User(
-          -1,
-          this.registerform.value.email,
-          this.registerform.value.password
+      this.currentUser = new User(
+        -1,
+        this.registerform.value.email,
+        this.registerform.value.password
       );
 
-      let newInfo = new UserInformation(
+      this.currentUserInfo = new UserInformation(
         -1,
         this.registerform.value.firstname,
         this.registerform.value.lastname,
@@ -70,28 +74,34 @@ export class RegisterComponent implements OnInit {
         this.registerform.value.zip
       );
 
-      this.regService.registerNewUser(newUser).subscribe(
+      await this.regService.registerNewUser(this.currentUser).subscribe(
         (data) => {
-          console.log(data);
-          if(data.status == 200){
-
-            this.regService.registerInfoNewUser(newUser, newInfo).subscribe(
-              (data) => {
-                console.log(data.body);
-                if(data.status == 200){
-                  window.alert('Your registration was successful! Login and get started!');
-                  this.router.navigate([this.returnUrl]);
-                }
-
-              }
-            );
+          console.log(data.body);
+          if (data.body != null) {
+            this.dataService.user = data.body;
+            this.currentUser = data.body;
+            console.log(this.currentUser);
             
-          }
+            }
         }
       );
-
-      
-     
     }
+    this.getNewUserInfo();
   }
+
+  async getNewUserInfo() {
+    await this.regService.registerInfoNewUser(this.currentUser, this.currentUserInfo).subscribe(
+      (data) => {
+        console.log(data.body);
+        if (data.status == 200) {
+          window.alert('Your registration was successful! Login and get started!');
+          
+          this.router.navigate([this.returnUrl]);
+        }
+
+      }
+    );
+  }
+
+
 }

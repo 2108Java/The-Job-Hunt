@@ -27,9 +27,14 @@ export class RegisterService {
 
 
   registerInfoNewUser(user: User, userInfo: any): Observable<HttpResponse<UserInformation>> {
+    console.log(user);
     return this.httpClient.post<UserInformation>(this.endpointForUserInfo, {
 
-      "users": user,
+      "users": {
+        "id": user.id,
+        "userEmail": user.email,
+        "userPassword": user.password
+    },
       "firstName": userInfo.firstName,
       "lastName": userInfo.lastName,
       "street": userInfo.street,

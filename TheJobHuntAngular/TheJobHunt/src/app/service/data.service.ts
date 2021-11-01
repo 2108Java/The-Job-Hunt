@@ -14,10 +14,10 @@ import { last } from 'rxjs/operators';
 })
 export class DataService {
   
-  private user!: User;
-  private userInfo!: UserInformation;
-  private job!: Job;
-  private savedJob!: SavedJob;
+  user!: User;
+  userInfo!: UserInformation;
+  job!: Job;
+  savedJob!: SavedJob;
 
   private endpointForUserInfo: string = 'http://localhost:8000/info/myInfo';
   private endpointGetTheUser!: string;
@@ -31,20 +31,7 @@ export class DataService {
     });
   }
 
-  registerInfoNewUser(user: User, userInfo: UserInformation): Observable<UserInformation> {
-    return this.httpClient.post<UserInformation>(this.endpointForUserInfo, {
-      
-        "users": user,
-        "firstName": userInfo.firstName,
-        "lastName": userInfo.lastName,
-        "street": userInfo.street,
-        "city": userInfo.city,
-        "state": userInfo.state,
-        "zip": userInfo.zip
-        }
-      
-    );
-  }
+
 
   updateSomeInfo(userInfo: UserInformation): Observable<UserInformation> {
     return this.httpClient.post<UserInformation>(this.endpointForUserInfo, {
