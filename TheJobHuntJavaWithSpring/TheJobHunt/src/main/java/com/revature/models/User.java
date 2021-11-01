@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
@@ -29,12 +29,21 @@ public class User {
 	);
 	
 */
+
+	public User(int id, String userEmail, String userPassword) {
+		super();
+		this.id = id;
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+	}
 	
 	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+
+
 	@Column(name = "user_email", nullable = false, unique = true)
 	private String userEmail;
 	
