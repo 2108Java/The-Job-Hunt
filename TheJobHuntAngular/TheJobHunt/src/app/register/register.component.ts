@@ -41,23 +41,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async onSubmit() {
-    //no need to make form submission into TS objects;
-    // just send raw json/txt (see the discord eg, like in postman)
-    // it goes in the body
-    if (this.registerform.valid) {
-
-      // let formString = JSON.stringify(this.registerform);
-      // let parsedForm = JSON.parse(formString);
-      // let unregisteredUser = new User(-1, parsedForm.email, parsedForm.password);
-      // let unregisteredInfo = new UserInformation(
-      //         -1, 
-      //         parsedForm.firstname, 
-      //         parsedForm.lastname,
-      //         parsedForm.address,
-      //         parsedForm.city,
-      //         parsedForm.state,
-      //         parsedForm.zip);
-
+     if (this.registerform.valid) {
       this.currentUser = new User(
         -1,
         this.registerform.value.email,
@@ -81,27 +65,23 @@ export class RegisterComponent implements OnInit {
             this.dataService.user = data.body;
             this.currentUser = data.body;
             console.log(this.currentUser);
-            
+            this.regService.registerInfoNewUser(this.currentUserInfo).subscribe(
+              (data) => {
+                console.log(data.body);
+                if (data.status == 200) {
+                  window.alert('Your registration was successful! Login and get started!');
+                  this.router.navigate([this.returnUrl]);
+                }
+        
+              }
+            );
             }
         }
       );
     }
-    this.getNewUserInfo();
+    
   }
 
-  async getNewUserInfo() {
-    await this.regService.registerInfoNewUser(this.currentUser, this.currentUserInfo).subscribe(
-      (data) => {
-        console.log(data.body);
-        if (data.status == 200) {
-          window.alert('Your registration was successful! Login and get started!');
-          
-          this.router.navigate([this.returnUrl]);
-        }
-
-      }
-    );
-  }
 
 
 }

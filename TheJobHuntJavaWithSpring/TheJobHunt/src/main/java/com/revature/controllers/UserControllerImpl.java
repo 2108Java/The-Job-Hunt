@@ -73,9 +73,11 @@ public class UserControllerImpl implements UserController {
 	}
 	@Override
 	@PostMapping(value="/createUser")
-	public User createUser(@RequestBody User user) {
+	public User createUser(@RequestBody User user, HttpSession session) {
 		
 		user = userService.insertUser(user);
+		session.setAttribute("user", user);
+		System.out.println(session.getAttribute("user"));
 		return user;
 	}
 
