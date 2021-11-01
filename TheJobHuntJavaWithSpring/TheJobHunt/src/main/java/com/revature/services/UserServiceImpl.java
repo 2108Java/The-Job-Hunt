@@ -24,12 +24,11 @@ public class UserServiceImpl implements UserServices {
 	@Autowired
 	private UserDao userDao;
 
-
 	@Override
 	public User userExists(User user) {
 
 		User userExists = userDao.getByUserEmail(user.getUserEmail());
-		if(userExists!=null)
+		if (userExists != null)
 			return userExists;
 		else {
 			return null;
@@ -38,38 +37,37 @@ public class UserServiceImpl implements UserServices {
 
 	@Override
 	public User loginUser(User user) {
-		
-		boolean success= false;
+
+		boolean success = false;
 		User testUser = userExists(user);
-		
-		if (testUser!=null) {
+
+		if (testUser != null) {
 			testUser.setUserPassword(decryptPassword(testUser.getUserPassword()));
-			if(user.getUserPassword().equals(testUser.getUserPassword())) {
+			if (user.getUserPassword().equals(testUser.getUserPassword())) {
 				success = true;
 			}
 		}
-		if(success) {
+		if (success) {
 			return testUser;
-		}else {
+		} else {
 			return null;
 		}
-		
+
 	}
- 
+
 	@Override
-	public boolean insertUser(User user) {
-		boolean success = false;
+	public User insertUser(User user) {
 		String randomPassword = generateRandomPassword();
 		System.out.println(randomPassword);
-		sendEmail(user.getUserEmail(),randomPassword);
+		sendEmail(user.getUserEmail(), randomPassword);
 		String encryptedPassword = encryptPassword(randomPassword);
 		user.setUserPassword(encryptedPassword);
-		if(userDao.save(user).getId()>0) {
-			success= true;
-		}
-		
-		return success;
+//		createUser(user);
+		user = userDao.save(user);
+
+		return user;
 	}
+
 	private static String generateRandomPassword() {
 		final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 		SecureRandom random = new SecureRandom();
@@ -81,30 +79,32 @@ public class UserServiceImpl implements UserServices {
 
 		return sb.toString();
 	}
+
 	private String encryptPassword(String password) {
 		String encodedString = Base64.getEncoder().encodeToString(password.getBytes());
 		return encodedString;
-		
+
 	}
-	
+
 	private String decryptPassword(String password) {
 		byte[] decodedBytes = Base64.getDecoder().decode(password);
 		String decodedString = new String(decodedBytes);
 		return decodedString;
 	}
+
 	@Override
 	public boolean updateUserEmail(User user) {
 
 		userDao.updateEmail(user.getUserEmail(), user.getId());
-		
+
 		return false;
 	}
 
 	@Override
 	public boolean updateUserPassword(User user) {
-		
+
 		userDao.updatePassword(user.getUserPassword(), user.getId());
-		
+
 		return false;
 	}
 
@@ -131,8 +131,8 @@ public class UserServiceImpl implements UserServices {
 			message.setFrom(new InternetAddress(from));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject("Welcome to The Job Hunt!");
-			message.setContent("<h1>Thank's for Registering !</h1>" + "<h3>Your temporary password is "
-					+ password + "</h3><h3>Don't forget to update it next time you login!</h3>", "text/html");
+			message.setContent("<h1>Thank's for Registering !</h1>" + "<h3>Your temporary password is " + password
+					+ "</h3><h3>Don't forget to update it next time you login!</h3>", "text/html");
 			Transport.send(message);
 		} catch (MessagingException mex) {
 			mex.printStackTrace();

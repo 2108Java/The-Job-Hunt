@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JobService } from '../service/job.service';
 import { FormBuilder } from '@angular/forms';
+
 import { DataService } from '../service/data.service';
 import { User } from '../models/User';
 import { SavedJob } from '../models/SavedJob';
 import { DashboardService } from '../service/dashboard.service';
+import { UserInformation } from '../models/UserInformation';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -14,19 +17,19 @@ import { DashboardService } from '../service/dashboard.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(
-    private jobService: JobService,
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private dataService: DataService,
-    private dashboardService: DashboardService
-  ) {
-    this.getCurrentUsersJobList();
-  }
-
   user!: User;
   savedJobsList!: SavedJob[];
   selectedJob!: SavedJob;
+  userInfo!: UserInformation;
+
+  constructor(private dataService: DataService,
+    private dashboardService: DashboardService,
+    private jobService: JobService,
+    private router: Router,
+    private formBuilder: FormBuilder) {
+    this.getCurrentUserInfo();
+  }
+
   dashboardSearch = this.formBuilder.group({
     dashboardSearchString: this.jobService.currentSearchString
   });
@@ -52,6 +55,19 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+
+  public getCurrentUserInfo() {
+    this.dashboardService.getCurrentUserInfo().subscribe(
+      (data) => {
+        if (data.body != null) {
+          this.userInfo = data.body;
+          this.dataService.userInfo = this.userInfo;
+          console.log(this.userInfo);
+        }
+      }
+    );
+  }
+
   selectJob(job: SavedJob) {
     this.selectedJob = job;
   }
@@ -62,7 +78,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  updateAppliedFor(event:any){
+  updateAppliedFor(event: any) {
     console.log(event);
   }
 }

@@ -16,7 +16,8 @@ public interface UserController {
 	
 	void updateUserEmail(HttpSession session, User user);
 	
-	void createUser(User user);
+
+	User createUser(User user, HttpSession session);
 	
 	
 

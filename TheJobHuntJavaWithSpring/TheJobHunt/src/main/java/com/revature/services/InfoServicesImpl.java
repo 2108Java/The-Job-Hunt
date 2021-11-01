@@ -27,7 +27,7 @@ public class InfoServicesImpl implements InfoServices {
 		    objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);	
 			boolean success = false;
 					info.setId(-1);
-					if(infoDao.save(info).getId()>0) {
+				if(infoDao.save(info)!=null) {
 						success = true;
 					}
 				if(success) {
