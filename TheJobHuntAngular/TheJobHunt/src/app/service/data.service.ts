@@ -6,6 +6,7 @@ import { Job } from '../models/Job';
 import { SavedJob } from '../models/SavedJob';
 import { User } from '../models/User';
 import { UserInformation } from '../models/UserInformation';
+import { last } from 'rxjs/operators';
 //import all the models
 
 @Injectable({
@@ -32,7 +33,17 @@ export class DataService {
 
   registerInfoNewUser(user: User, userInfo: UserInformation): Observable<UserInformation> {
     return this.httpClient.post<UserInformation>(this.endpointForUserInfo, {
-    });
+      
+        "users": user,
+        "firstName": userInfo.firstName,
+        "lastName": userInfo.lastName,
+        "street": userInfo.street,
+        "city": userInfo.city,
+        "state": userInfo.state,
+        "zip": userInfo.zip
+        }
+      
+    );
   }
 
   updateSomeInfo(userInfo: UserInformation): Observable<UserInformation> {

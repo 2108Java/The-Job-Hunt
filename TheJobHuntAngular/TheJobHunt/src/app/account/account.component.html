@@ -22,13 +22,13 @@
                             
                             
                             <!-- Rayna's code-->
-                            <form [formGroup]="registerform" (ngSubmit)="onSubmit()">
+                            <form [formGroup]="updatedInfoform" >
                                 <input type="email" class="form-control form-control-lg" placeholder="Email@Address.com"
                                     id="email" formControlName="email" required />
                                 <label class="form-label">Email address</label>
-                                <div *ngIf="registerform.controls['email'].invalid && registerform.controls['email'].touched"
+                                <div *ngIf="updatedInfoform.controls['email'].invalid && updatedInfoform.controls['email'].touched"
                                     class="alert alert-danger">
-                                    <span *ngIf="registerform.controls['email'].errors">
+                                    <span *ngIf="updatedInfoform.controls['email'].errors">
                                         Email is required.
                                     </span>
                                 </div>
@@ -36,9 +36,9 @@
                                 <input type="password" class="form-control form-control-lg" placeholder=""
                                     id="password" formControlName="password" required />
                                 <label class="form-label">Password</label>
-                                <div *ngIf="registerform.controls['password'].invalid && registerform.controls['password'].touched"
+                                <div *ngIf="updatedInfoform.controls['password'].invalid && updatedInfoform.controls['password'].touched"
                                     class="alert alert-danger">
-                                    <span *ngIf="registerform.controls['password'].errors">
+                                    <span *ngIf="updatedInfoform.controls['password'].errors">
                                         Please enter a password.
                                     </span>
                                 </div>
@@ -49,9 +49,9 @@
                                             <input class="form-control form-control-lg" type="text" placeholder="John"
                                                 id="firstname" formControlName="firstname" required>
                                             <label class="form-label">First Name</label>
-                                            <div *ngIf="registerform.controls['firstname'].invalid && registerform.controls['firstname'].touched"
+                                            <div *ngIf="updatedInfoform.controls['firstname'].invalid && updatedInfoform.controls['firstname'].touched"
                                                 class="alert alert-danger">
-                                                <span *ngIf="registerform.controls['firstname'].errors">
+                                                <span *ngIf="updatedInfoform.controls['firstname'].errors">
                                                     First Name is required.
                                                 </span>
                                             </div>
@@ -62,9 +62,9 @@
                                             <input class="form-control form-control-lg" type="text" placeholder="Doe"
                                                 id="lastname" formControlName="lastname" required>
                                             <label class="form-label">Last Name</label>
-                                            <div *ngIf="registerform.controls['lastname'].invalid && registerform.controls['lastname'].touched"
+                                            <div *ngIf="updatedInfoform.controls['lastname'].invalid && updatedInfoform.controls['lastname'].touched"
                                                 class="alert alert-danger">
-                                                <span *ngIf="registerform.controls['lastname'].errors">
+                                                <span *ngIf="updatedInfoform.controls['lastname'].errors">
                                                     Last Name is required.
                                                 </span>
                                             </div>
@@ -75,9 +75,9 @@
                                     <input type="text" class="form-control form-control-lg" placeholder="123 N. 1st St."
                                         id="address" formControlName="address" required />
                                     <label class="form-label">Street Address</label>
-                                    <div *ngIf="registerform.controls['address'].invalid && registerform.controls['address'].touched"
+                                    <div *ngIf="updatedInfoform.controls['address'].invalid && updatedInfoform.controls['address'].touched"
                                         class="alert alert-danger">
-                                        <span *ngIf="registerform.controls['address'].errors">
+                                        <span *ngIf="updatedInfoform.controls['address'].errors">
                                             Street is required.
                                         </span>
                                     </div>
@@ -88,9 +88,9 @@
                                             <input class="form-control form-control-lg" type="text"
                                                 placeholder="New York City" id="city" formControlName="city" required>
                                             <label class="form-label">City</label>
-                                            <div *ngIf="registerform.controls['city'].invalid && registerform.controls['city'].touched"
+                                            <div *ngIf="updatedInfoform.controls['city'].invalid && updatedInfoform.controls['city'].touched"
                                                 class="alert alert-danger">
-                                                <span *ngIf="registerform.controls['city'].errors">
+                                                <span *ngIf="updatedInfoform.controls['city'].errors">
                                                     City is required.
                                                 </span>
                                             </div>
@@ -154,9 +154,9 @@
                                                 <option value="WY">Wyoming</option>
                                             </select>
                                             <label class="form-label">State</label>
-                                            <div *ngIf="registerform.controls['state'].invalid && registerform.controls['state'].touched"
+                                            <div *ngIf="updatedInfoform.controls['state'].invalid && updatedInfoform.controls['state'].touched"
                                                 class="alert alert-danger">
-                                                <span *ngIf="registerform.controls['state'].errors">
+                                                <span *ngIf="updatedInfoform.controls['state'].errors">
                                                     State is required.
                                                 </span>
                                             </div>
@@ -167,9 +167,9 @@
                                             <input class="form-control form-control-lg" type="number"
                                                 placeholder="12345" id="zip" formControlName="zip" required>
                                             <label class="form-label">Zip Code</label>
-                                            <div *ngIf="registerform.controls['zip'].invalid && registerform.controls['zip'].touched"
+                                            <div *ngIf="updatedInfoform.controls['zip'].invalid && updatedInfoform.controls['zip'].touched"
                                                 class="alert alert-danger">
-                                                <span *ngIf="registerform.controls['zip'].errors">
+                                                <span *ngIf="updatedInfoform.controls['zip'].errors">
                                                     Zip Code is required.
                                                 </span>
                                             </div>
