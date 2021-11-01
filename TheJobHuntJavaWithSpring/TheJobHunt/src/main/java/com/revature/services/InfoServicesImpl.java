@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class InfoServicesImpl implements InfoServices {
 		@Autowired
 		private InfoDao infoDao;
 		
+		private static final Logger loggy = Logger.getLogger(InfoServices.class);
 
 		@Override
 		public Information saveUserInfo(Information info) {
@@ -27,12 +29,16 @@ public class InfoServicesImpl implements InfoServices {
 		    objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);	
 			boolean success = false;
 					info.setId(-1);
+				loggy.info("saving user information");
 				if(infoDao.save(info)!=null) {
 						success = true;
 					}
 				if(success) {
+					
+					loggy.info("user information successfully saved");
 					return info;
 				} else {
+					loggy.warn("user information unsuccessfully saved");
 					return null;
 				}
 		}
@@ -43,6 +49,7 @@ public class InfoServicesImpl implements InfoServices {
 			ObjectMapper objectMapper = new ObjectMapper();
 		    objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 			boolean success = false;
+			loggy.info("updating user information");
 				if(infoDao.updateFirstName(info.getFirstName(), info.getUsers().getId())==1) {
 					success = true;
 				}
@@ -59,6 +66,7 @@ public class InfoServicesImpl implements InfoServices {
 			ObjectMapper objectMapper = new ObjectMapper();
 		    objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 			boolean success = false;
+			loggy.info("updating user information");
 				if(infoDao.updateLastName(info.getLastName(), info.getUsers().getId())==1) {
 					success = true;
 				}
@@ -74,6 +82,7 @@ public class InfoServicesImpl implements InfoServices {
 			ObjectMapper objectMapper = new ObjectMapper();
 		    objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 			boolean success = false;
+			loggy.info("updating user information");
 				if(infoDao.updateStreet(info.getStreet(), info.getUsers().getId())==1) {
 					success = true;
 				}
@@ -89,6 +98,7 @@ public class InfoServicesImpl implements InfoServices {
 			ObjectMapper objectMapper = new ObjectMapper();
 		    objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 			boolean success = false;
+			loggy.info("updating user information");
 				if(infoDao.updateCity(info.getCity(), info.getUsers().getId())==1) {
 					success = true;
 				}
@@ -104,6 +114,7 @@ public class InfoServicesImpl implements InfoServices {
 			ObjectMapper objectMapper = new ObjectMapper();
 		    objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 			boolean success = false;
+			loggy.info("updating user information");
 				if(infoDao.updateState(info.getState(), info.getUsers().getId())==1) {
 					success = true;
 				}
@@ -119,6 +130,7 @@ public class InfoServicesImpl implements InfoServices {
 			ObjectMapper objectMapper = new ObjectMapper();
 		    objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
 			boolean success = false;
+			loggy.info("updating user information");
 				if(infoDao.updateZipCode(info.getZip(), info.getUsers().getId())==1) {
 					success = true;
 				}
@@ -134,11 +146,12 @@ public class InfoServicesImpl implements InfoServices {
 		public Information getInfoByUser(User user) {
 			ObjectMapper objectMapper = new ObjectMapper();
 		    objectMapper.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-
+		    loggy.info("getting user information");
 			Information info = infoDao.findByUsers(user); 
 			if (info != null) {
 				return info;
 			} else {
+				 loggy.warn("unsuccessfully getting user information");
 				return null;
 			}
 		}
