@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit {
 
   registerform = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
-    password: ["", [Validators.required]],
     firstname: ["", Validators.required],
     lastname: ["", Validators.required],
     address: ["", Validators.required],
@@ -42,10 +41,6 @@ export class RegisterComponent implements OnInit {
 
   async onSubmit() {
      if (this.registerform.valid) {
-      this.currentUser = (
-        this.registerform.value.email,
-        this.registerform.value.password
-      );
 
       this.currentUserInfo = new UserInformation(
         -1,
@@ -57,7 +52,7 @@ export class RegisterComponent implements OnInit {
         this.registerform.value.zip
       );
 
-      await this.regService.registerNewUser(this.currentUser).subscribe(
+      await this.regService.registerNewUser(this.registerform.value.email).subscribe(
         (data) => {
           console.log(data.body);
           if (data.body != null) {

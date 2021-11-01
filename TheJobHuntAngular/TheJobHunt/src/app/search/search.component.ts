@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Job } from '../models/Job';
-import { HttpHeaders } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SearchService } from '../service/search.service';
 import { Router } from '@angular/router';
@@ -41,10 +40,34 @@ export class SearchComponent implements OnInit {
         console.log(this.JobList);
       }
     );
-
+    this.jobService
   }
 
   public selectJob(job: Job) {
+    if(job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement = "empty";
+    }
+    if(job.MatchedObjectDescriptor.UserArea.Details.Evaluations.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.Evaluations = "empty";
+    }
+    if(job.MatchedObjectDescriptor.UserArea.Details.JobSummary.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.JobSummary = "empty";
+    }
+    if(job.MatchedObjectDescriptor.UserArea.Details.OtherInformation.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.OtherInformation = "empty";
+    }
+    if(job.MatchedObjectDescriptor.UserArea.Details.Requirements.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.Requirements = "empty";
+    }
+    if(job.MatchedObjectDescriptor.PositionLocationDisplay.length < 1){
+      job.MatchedObjectDescriptor.PositionLocationDisplay = "empty";
+    }
+    if(job.MatchedObjectDescriptor.PositionTitle.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement = "empty";
+    }
+    if(job.MatchedObjectDescriptor.OrganizationName.length < 1){
+      job.MatchedObjectDescriptor.OrganizationName = "empty";
+    }
     this.jobService.currentJob = job;
     this.router.navigate(['/jobDetails']);
 

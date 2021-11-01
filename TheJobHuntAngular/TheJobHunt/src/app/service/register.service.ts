@@ -17,11 +17,10 @@ export class RegisterService {
   constructor(private httpClient: HttpClient) { }
 
   
-  registerNewUser(user: any): Observable<HttpResponse<User>> {
+  registerNewUser(user:string): Observable<HttpResponse<User>> {
     console.log(user);
     return this.httpClient.post<User>(this.endpointForUser, {
-      "userEmail": user.email,
-      "userPassword": user.password
+      "userEmail": user
   }, {withCredentials: true, observe: 'response' as 'response'} );
   }
 

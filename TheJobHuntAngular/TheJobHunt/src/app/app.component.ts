@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TheJobHunt';
+  logout(){
+    sessionStorage.setItem('isLoggedIn', 'false');
+    sessionStorage.removeItem('token');
+  }
 }

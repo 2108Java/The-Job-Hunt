@@ -55,6 +55,8 @@ public class SavedJobsControllerImpl implements SavedJobsController {
 		User user = (User) session.getAttribute("user");
 		if(user != null) {
 			job.setUsers(user);
+			job.setAppliedFor(false);
+			System.out.println(job);
 			return jobService.createJob(job);
 		}else {
 			return false;

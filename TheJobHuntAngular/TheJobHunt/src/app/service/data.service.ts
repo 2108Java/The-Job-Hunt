@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 
 import { Job } from '../models/Job';
 import { SavedJob } from '../models/SavedJob';
@@ -14,7 +14,7 @@ import { last } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataService {
-  
+
   userInfo!: UserInformation;
   job!: Job;
   savedJob!: SavedJob;
@@ -23,10 +23,11 @@ export class DataService {
   private endpointGetTheUser!: string;
   private endpointGetTheJob!: string;
 
-currentUser!: User;
+  currentUser!: User;
+  currentSavedJobs!: SavedJob;
 
 
-  constructor( private httpClient: HttpClient ) { }
+  constructor(private httpClient: HttpClient) { }
 
   //USER INFO methods
   getInfoForUser(): Observable<UserInformation> {
@@ -44,18 +45,18 @@ currentUser!: User;
 
   //MIGHT BE USEFUL, BUT ARE INCOMPLETE
   getUserForUser(): Observable<User> {
-    return this.httpClient.get<User>(this.endpointGetTheUser, { 
+    return this.httpClient.get<User>(this.endpointGetTheUser, {
     });
   }
 
-  getJob(): Observable<Job>{
+  getJob(): Observable<Job> {
     return this.httpClient.get<Job>(this.endpointGetTheJob, { //headers? user session?
     });
   }
 
-  getSavedJob(): SavedJob{
+  getSavedJob(): SavedJob {
     return this.savedJob;
   }
 
-  
+
 }
