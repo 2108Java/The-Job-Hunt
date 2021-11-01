@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 import { Job } from '../models/Job';
 import { SavedJob } from '../models/SavedJob';
 import { User } from '../models/User';
@@ -14,7 +15,6 @@ import { last } from 'rxjs/operators';
 })
 export class DataService {
   
-  user!: User;
   userInfo!: UserInformation;
   job!: Job;
   savedJob!: SavedJob;
@@ -22,6 +22,9 @@ export class DataService {
   private endpointForUserInfo: string = 'http://localhost:8000/info/myInfo';
   private endpointGetTheUser!: string;
   private endpointGetTheJob!: string;
+
+currentUser!: User;
+
 
   constructor( private httpClient: HttpClient ) { }
 

@@ -47,6 +47,7 @@ export class SearchComponent implements OnInit {
   public selectJob(job: Job) {
     this.jobService.currentJob = job;
     this.router.navigate(['/jobDetails']);
+
   }
 
 }

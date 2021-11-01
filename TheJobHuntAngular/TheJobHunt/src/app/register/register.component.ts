@@ -36,14 +36,13 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = '/login';
-    this.currentUser = this.dataService.user;
+    this.currentUser = this.dataService.currentUser;
     this.currentUserInfo = this.dataService.userInfo;
   }
 
   async onSubmit() {
      if (this.registerform.valid) {
-      this.currentUser = new User(
-        -1,
+      this.currentUser = (
         this.registerform.value.email,
         this.registerform.value.password
       );
@@ -62,7 +61,7 @@ export class RegisterComponent implements OnInit {
         (data) => {
           console.log(data.body);
           if (data.body != null) {
-            this.dataService.user = data.body;
+            this.dataService.currentUser = data.body;
             this.currentUser = data.body;
             console.log(this.currentUser);
             this.regService.registerInfoNewUser(this.currentUserInfo).subscribe(

@@ -23,8 +23,8 @@ export class AccountComponent implements OnInit {
 
 
   updatedInfoform = this.formBuilder.group({
-    email: [this.dataService.user.email, [Validators.required, Validators.email]],
-    password: [this.dataService.user.password, Validators.required],
+    email: [this.dataService.currentUser.userEmail, [Validators.required, Validators.email]],
+    password: [this.dataService.currentUser.userPassword, Validators.required],
     firstname: [this.dataService.userInfo.firstName, Validators.required],
     lastname: [this.dataService.userInfo.lastName, Validators.required],
     address: [this.dataService.userInfo.street, Validators.required],
