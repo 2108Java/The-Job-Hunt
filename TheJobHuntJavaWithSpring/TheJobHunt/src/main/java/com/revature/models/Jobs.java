@@ -53,8 +53,11 @@ public class Jobs {
 	@Column(name = "PositionTitle")
 	private String PositionTitle;
 	
-	@Column(name = "PostionLocationDisplay")
-	private String PostionLocationDisplay;
+	@Column(name = "PositionLocationDisplay")
+	private String PositionLocationDisplay;
+	
+	@Column(name = "OrganizationName")
+	private String OrganizationName;
 	
 	@Column(name = "AgencyMarketingStatement", length=25000)
 	private String AgencyMarketingStatement;
@@ -68,7 +71,7 @@ public class Jobs {
 	@Column(name = "OtherInformation", length=25000)
 	private String OtherInformation;
 	
-	@Column(name = "Requirements")
+	@Column(name = "Requirements", length=25000)
 	private String Requirements;
 	
 	
@@ -89,12 +92,20 @@ public class Jobs {
 		PositionTitle = positionTitle;
 	}
 
-	public String getPostionLocationDisplay() {
-		return PostionLocationDisplay;
+	public String getPositionLocationDisplay() {
+		return PositionLocationDisplay;
 	}
 
-	public void setPostionLocationDisplay(String postionLocationDisplay) {
-		PostionLocationDisplay = postionLocationDisplay;
+	public void setPositionLocationDisplay(String positionLocationDisplay) {
+		PositionLocationDisplay = positionLocationDisplay;
+	}
+
+	public String getOrganizationName() {
+		return OrganizationName;
+	}
+
+	public void setOrganizationName(String organizationName) {
+		OrganizationName = organizationName;
 	}
 
 	public String getAgencyMarketingStatement() {

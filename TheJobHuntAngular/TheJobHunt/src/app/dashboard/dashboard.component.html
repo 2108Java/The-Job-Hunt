@@ -10,23 +10,76 @@
         </form>
     </div>
     <div>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Position Title</th>
+                    <th>Organization</th>
+                    <th>Location</th>
                     <th>Applied?</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let job of savedJobsList">
-                    <td>{{job.PositionTitle}}</td>
+                    <td (click)="selectJob(job)">{{job.PositionTitle}}</td>
+                    <td>{{job.OrganizationName}}</td>
+                    <td>{{job.PositionLocationDisplay}}</td>
                     <td>{{job.AppliedFor}}</td>
-                    <td (click)="deleteJob(job.Id)"><button>I'm a button</button></td>
+                    <td (click)="deleteJob(job)" routerLink="([/deletingJob])"><button>I'm a button</button></td>
                 </tr>
             </tbody>
         </table>
-
     </div>
-
+    <div *ngIf="selectedJob != null">
+        <div class="row d-flex justify-content-center">
+            <div class="col">
+                <div *ngIf="selectedJob.PositionTitle.length > 0">
+                    <h3>{{selectedJob.PositionTitle}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col col-3">
+                <div *ngIf="selectedJob.OrganizationName.length > 0">
+                    <label>Organization Name</label>
+                    <h5>{{selectedJob.OrganizationName}}</h5>
+                    <hr>
+                </div>
+                <div *ngIf="selectedJob.PositionLocationDisplay.length > 0">
+                    <label>Location</label>
+                    <h5>{{selectedJob.PositionLocationDisplay}}</h5>
+                </div>
+            </div>
+            <div class="col col-7">
+                <div *ngIf="selectedJob.JobSummary.length > 0">
+                    <label>Job Summary</label>
+                    <h6>{{selectedJob.JobSummary}}</h6>
+                    <hr>
+                </div>
+                <div *ngIf="selectedJob.AgencyMarketingStatement.length > 0">
+                    <label>Agency Statement</label>
+                    <h6>{{selectedJob.AgencyMarketingStatement}}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col col-10">
+                <div *ngIf="selectedJob.Requirements.length > 0">
+                    <label>Requirements</label>
+                    <h6>{{selectedJob.Requirements}}</h6>
+                    <hr>
+                </div>
+                <div *ngIf="selectedJob.Evaluations.length > 0">
+                    <label>Evaluations</label>
+                    <h6>{{selectedJob.Evaluations}}</h6>
+                    <hr>
+                </div>
+                <div *ngIf="selectedJob.OtherInformation.length > 0">
+                    <label>Other Information</label>
+                    <h6>{{selectedJob.OtherInformation}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

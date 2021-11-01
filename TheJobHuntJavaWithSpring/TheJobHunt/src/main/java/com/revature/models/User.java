@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,6 +35,13 @@ public class User {
 		this.userPassword = userPassword;
 	}
 	
+	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 	@Id
 	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)

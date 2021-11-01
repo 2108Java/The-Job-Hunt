@@ -1,13 +1,7 @@
 package com.revature.controllers;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
-import org.springframework.web.bind.annotation.GetMapping;
-
 import com.revature.models.Information;
-import com.revature.models.User;
 
 public interface InfoController {
 		

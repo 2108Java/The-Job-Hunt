@@ -44,6 +44,30 @@ export class SearchComponent implements OnInit {
   }
 
   public selectJob(job: Job) {
+    if(job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement = "empty";
+    }
+    if(job.MatchedObjectDescriptor.UserArea.Details.Evaluations.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.Evaluations = "empty";
+    }
+    if(job.MatchedObjectDescriptor.UserArea.Details.JobSummary.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.JobSummary = "empty";
+    }
+    if(job.MatchedObjectDescriptor.UserArea.Details.OtherInformation.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.OtherInformation = "empty";
+    }
+    if(job.MatchedObjectDescriptor.UserArea.Details.Requirements.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.Requirements = "empty";
+    }
+    if(job.MatchedObjectDescriptor.PositionLocationDisplay.length < 1){
+      job.MatchedObjectDescriptor.PositionLocationDisplay = "empty";
+    }
+    if(job.MatchedObjectDescriptor.PositionTitle.length < 1){
+      job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement = "empty";
+    }
+    if(job.MatchedObjectDescriptor.OrganizationName.length < 1){
+      job.MatchedObjectDescriptor.OrganizationName = "empty";
+    }
     this.jobService.currentJob = job;
     this.router.navigate(['/jobDetails']);
 
