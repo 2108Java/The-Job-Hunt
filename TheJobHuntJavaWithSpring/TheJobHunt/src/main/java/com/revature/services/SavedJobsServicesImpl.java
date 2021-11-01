@@ -24,7 +24,7 @@ public class SavedJobsServicesImpl implements SavedJobsServices {
 		
 		
 		
-		if(jobsDao.save(job).getId()>0) {
+		if(jobsDao.save(job)!=null) {
 			success= true;
 		}
 		
