@@ -30,7 +30,28 @@ export class DashboardService {
       body: {
         "Users": job.Users,
         "AppliedFor": job.AppliedFor,
-        "Id"!: job.Id,
+        "Id": job.Id,
+        "OrganizationName": job.OrganizationName,
+        "MatchedObjectId": job.MatchedObjectId,
+        "PositionTitle": job.PositionTitle,
+        "PositionLocationDisplay": job.PositionLocationDisplay,
+        "AgencyMarketingStatement": job.AgencyMarketingStatement,
+        "Evaluations": job.Evaluations,
+        "JobSummary": job.JobSummary,
+        "OtherInformation": job.OtherInformation,
+        "Requirements": job.Requirements
+      },
+    };
+    return this.httpClient.delete<SavedJob>("http://localhost:8000/jobs/updateJob", options);
+  }
+  deleteJob(job: SavedJob) {
+    let options = {
+      withCredentials: true,
+      observe: 'response' as 'response',
+      body: {
+        "Users": job.Users,
+        "AppliedFor": job.AppliedFor,
+        "Id": job.Id,
         "OrganizationName": job.OrganizationName,
         "MatchedObjectId": job.MatchedObjectId,
         "PositionTitle": job.PositionTitle,

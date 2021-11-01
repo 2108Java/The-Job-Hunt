@@ -62,4 +62,7 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+  updateAppliedFor(event:any){
+    console.log(event);
+  }
 }

@@ -25,8 +25,8 @@
                     <td (click)="selectJob(job)">{{job.PositionTitle}}</td>
                     <td>{{job.OrganizationName}}</td>
                     <td>{{job.PositionLocationDisplay}}</td>
-                    <td>{{job.AppliedFor}}</td>
-                    <td (click)="deleteJob(job)" routerLink="([/deletingJob])"><button>I'm a button</button></td>
+                    <td><input type="checkbox" [(ngModel)]="job.AppliedFor" (change)="updateAppliedFor(job.AppliedFor)" />{{job.AppliedFor}}</td>
+                    <td (click)="deleteJob(job)"><button>I'm a button</button></td>
                 </tr>
             </tbody>
         </table>
