@@ -9,7 +9,7 @@ public interface UserServices {
 	
 	User loginUser(User user);
 	
-	boolean insertUser(User user);
+	User insertUser(User user);
 	
 	boolean updateUserEmail(User user);
 	

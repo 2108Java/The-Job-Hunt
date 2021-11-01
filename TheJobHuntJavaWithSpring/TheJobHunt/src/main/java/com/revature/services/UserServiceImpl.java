@@ -44,14 +44,22 @@ public class UserServiceImpl implements UserServices {
 	}
  
 	@Override
-	public boolean insertUser(User user) {
-		boolean success = false;
+	public User insertUser(User user) {
+	
 		
+<<<<<<< HEAD
+//		createUser(user);
+		user = userDao.save(user);
+
+		
+		return user;
+=======
 		if(userDao.save(user).getId()>0) {
 			success= true;
 		}
 		
 		return success;
+>>>>>>> 40ddfd22a4c9ac2f386a4ee3bb09ff0c23a5175d
 	}
 
 	@Override
