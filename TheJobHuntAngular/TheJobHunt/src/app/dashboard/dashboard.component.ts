@@ -19,8 +19,9 @@ export class DashboardComponent implements OnInit {
 
   user!: User;
   savedJobsList!: SavedJob[];
-  selectedJob!: SavedJob;
+  selectedJob!: SavedJob | null;
   userInfo!: UserInformation;
+  message!: string|null;
 
   constructor(private dataService: DataService,
     private dashboardService: DashboardService,
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder) {
     this.getCurrentUserInfo();
+    this.getCurrentUsersJobList();
   }
 
   dashboardSearch = this.formBuilder.group({
@@ -35,8 +37,9 @@ export class DashboardComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.getCurrentUserInfo();
     this.getCurrentUsersJobList();
-    this.user = this.dataService.currentUser;
+    this.message=null;
   }
 
   public searchForJob() {
@@ -49,8 +52,9 @@ export class DashboardComponent implements OnInit {
       (data) => {
         if (data.body != null) {
           this.savedJobsList = data.body;
-          this.dataService.currentUser = this.savedJobsList[0].Users;
-          this.user = this.savedJobsList[0].Users;
+          this.user = data.body[0].Users;
+          this.dataService.currentSavedJobs = data.body;
+          this.dataService.currentUser = data.body[0].Users;
         }
       }
     );
@@ -61,8 +65,7 @@ export class DashboardComponent implements OnInit {
       (data) => {
         if (data.body != null) {
           this.userInfo = data.body;
-          this.dataService.userInfo = this.userInfo;
-          console.log(this.userInfo);
+          this.dataService.userInfo = data.body;
         }
       }
     );
@@ -71,14 +74,27 @@ export class DashboardComponent implements OnInit {
   selectJob(job: SavedJob) {
     this.selectedJob = job;
   }
+
   deleteJob(job: SavedJob) {
     this.dashboardService.deleteJob(job).subscribe(
       (data) => {
-        this.getCurrentUsersJobList();
+        if(data.status == 200){
+          this.getCurrentUsersJobList();
+          this.message="Successfully deleted job from list!";
+          this.selectedJob = null;
+        }
       }
     );
+    this.getCurrentUsersJobList();
   }
-  updateAppliedFor(event: any) {
-    console.log(event);
+  updateAppliedFor(job: SavedJob) {
+    this.dashboardService.updateSavedJob(job).subscribe(
+      (data)=>{
+        console.log(data);
+        if(data.status == 200){
+          this.message="Successfully updated job's applied for status!";
+        }
+      }
+    );
   }
 }

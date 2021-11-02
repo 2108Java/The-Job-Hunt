@@ -1,22 +1,32 @@
-<p>their list of jobs, welcome summary, searchbar</p>
-<div class="container col-xl-10">
+<div class="container">
     <div class="row justify-content-center">
-        <h1>Hello and Welcome to The Job Hunt, {{user.userEmail}}!</h1>
+        <h1 class="display-4">Hello and Welcome to The Job Hunt, {{userInfo.firstName}}!</h1>
     </div>
     <div class="row justify-content-center">
-        <form class="d-flex" [formGroup]="dashboardSearch" (ngSubmit)="searchForJob()">
-            <input class="form-control me-2" type="search" placeholder="Search" formControlName="dashboardSearchString">
-            <button class="btn btn-outline-success">Search</button>
+        <form [formGroup]="dashboardSearch" (ngSubmit)="searchForJob()">
+            <h5>Search for job by keyword:</h5>
+            <div class="row">
+                <div class="col-10">
+                    <input class="form-control me-2" type="search" placeholder="Search"
+                        formControlName="dashboardSearchString">
+                </div>
+                <div class="col-2 d-grid">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+            </div>
         </form>
     </div>
-    <div>
-        <table class="table">
+    <div *ngIf="savedJobsList != null">
+        <div class="alert alert-success" role="alert" *ngIf="message != null">
+            {{message}}
+          </div>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Position Title</th>
-                    <th>Organization</th>
+                    <th>Organization Name</th>
                     <th>Location</th>
-                    <th>Applied?</th>
+                    <th>Applied For?</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -25,8 +35,9 @@
                     <td (click)="selectJob(job)">{{job.PositionTitle}}</td>
                     <td>{{job.OrganizationName}}</td>
                     <td>{{job.PositionLocationDisplay}}</td>
-                    <td><input type="checkbox" [(ngModel)]="job.AppliedFor" (change)="updateAppliedFor(job.AppliedFor)" />{{job.AppliedFor}}</td>
-                    <td (click)="deleteJob(job)"><button>I'm a button</button></td>
+                    <td><input type="checkbox" [(ngModel)]="job.AppliedFor"
+                            (change)="updateAppliedFor(job)" />&nbsp;&nbsp;{{job.AppliedFor}}</td>
+                    <td><button class="btn btn-danger" (click)="deleteJob(job)">Delete Job</button></td>
                 </tr>
             </tbody>
         </table>
@@ -40,44 +51,48 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <div class="col col-3">
+            <div class="col-3">
                 <div *ngIf="selectedJob.OrganizationName.length > 0">
-                    <label>Organization Name</label>
-                    <h5>{{selectedJob.OrganizationName}}</h5>
+                    <h6>Organization Name</h6>
+                    <p>{{selectedJob.OrganizationName}}</p>
                     <hr>
                 </div>
                 <div *ngIf="selectedJob.PositionLocationDisplay.length > 0">
-                    <label>Location</label>
-                    <h5>{{selectedJob.PositionLocationDisplay}}</h5>
+                    <h6>Location</h6>
+                    <p>{{selectedJob.PositionLocationDisplay}}</p>
+                    <hr>
+                </div>
+                <div class="d-grid text-center">
+                    <button class="btn btn-danger" (click)="deleteJob(selectedJob)">Delete Job</button>
                 </div>
             </div>
-            <div class="col col-7">
+            <div class="col col-9">
                 <div *ngIf="selectedJob.JobSummary.length > 0">
-                    <label>Job Summary</label>
-                    <h6>{{selectedJob.JobSummary}}</h6>
+                    <h6>Job Summary</h6>
+                    <p>{{selectedJob.JobSummary}}</p>
                     <hr>
                 </div>
                 <div *ngIf="selectedJob.AgencyMarketingStatement.length > 0">
-                    <label>Agency Statement</label>
-                    <h6>{{selectedJob.AgencyMarketingStatement}}</h6>
+                    <h6>Agency Statement</h6>
+                    <p>{{selectedJob.AgencyMarketingStatement}}</p>
                 </div>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <div class="col col-10">
+            <div class="col col-12">
                 <div *ngIf="selectedJob.Requirements.length > 0">
-                    <label>Requirements</label>
-                    <h6>{{selectedJob.Requirements}}</h6>
+                    <h6>Requirements</h6>
+                    <p>{{selectedJob.Requirements}}</p>
                     <hr>
                 </div>
                 <div *ngIf="selectedJob.Evaluations.length > 0">
-                    <label>Evaluations</label>
-                    <h6>{{selectedJob.Evaluations}}</h6>
+                    <h6>Evaluations</h6>
+                    <p>{{selectedJob.Evaluations}}</p>
                     <hr>
                 </div>
                 <div *ngIf="selectedJob.OtherInformation.length > 0">
-                    <label>Other Information</label>
-                    <h6>{{selectedJob.OtherInformation}}</h6>
+                    <h6>Other Information</h6>
+                    <p>{{selectedJob.OtherInformation}}</p>
                 </div>
             </div>
         </div>

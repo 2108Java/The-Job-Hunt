@@ -19,7 +19,9 @@
                                         <img src="../../assets/usajobs.png" alt="favicon" width="250" height="60" />
                                     </div>
                                 </div>
-
+                                <div class="alert alert-danger" role="alert" *ngIf="message != null">
+                                    {{message}}
+                                </div>
                                 <h5 class="fw-normal mb-3 pb-3">Sign into your account</h5>
 
                                 <div class="form-outline mb-4">
@@ -41,7 +43,7 @@
                                     <div *ngIf="loginform.controls['password'].invalid && loginform.controls['password'].touched"
                                         class="alert alert-danger">
                                         <span *ngIf="loginform.controls['password'].errors">
-                                            Email is required.
+                                            Password is required.
                                         </span>
                                     </div>
                                 </div>
@@ -51,9 +53,9 @@
                                 </div>
 
                                 <!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
-                                <p class="mb-5 pb-lg-2">Don't have an account? <a
-                                        routerLink="/register">Register here</a></p>
-                                </form>
+                                <p class="mb-5 pb-lg-2">Don't have an account? <a routerLink="/register">Register
+                                        here</a></p>
+                            </form>
 
                         </div>
                     </div>

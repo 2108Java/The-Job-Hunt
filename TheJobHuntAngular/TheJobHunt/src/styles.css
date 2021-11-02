@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: #F7F9FB;
+}
+
+nav {
+    margin-bottom: 50px;
+  }
+
+.alert{
+    margin-top: 10px;   
+    margin-bottom: 10px;   
+}
