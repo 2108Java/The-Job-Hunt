@@ -10,19 +10,21 @@ import { SearchService } from '../service/search.service';
 })
 export class JobDetailsComponent implements OnInit {
   job!: Job;
-  success!:boolean;
+  success!: boolean;
+  message!: string | null;
   constructor(private jobService: JobService, private searchService: SearchService) { }
 
   ngOnInit(): void {
+    this.message = null;
     this.job = this.jobService.currentJob;
   }
 
   addJobToList() {
-    console.log(this.job);
-    this.searchService.addJob(this.job).subscribe(
-      (data) => 
-      console.log(data)
-    );
+    this.searchService.addJob(this.job).subscribe((data) => {
+      if (data.status == 200) {
+        this.message = "Successfully added job to your list!"
+      }
+    });
   }
 
 }

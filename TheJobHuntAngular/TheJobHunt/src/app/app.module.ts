@@ -20,6 +20,7 @@ import { LoginService } from './service/login.service';
 import { SearchService } from './service/search.service';
 import { DashboardService } from './service/dashboard.service';
 import { RegisterService } from './service/register.service';
+import { AccountService } from './service/account.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RegisterService } from './service/register.service';
     LoginService,
     SearchService,
     DashboardService,
-    RegisterService
+    RegisterService,
+    AccountService
   ],
   bootstrap: [AppComponent]
 })

@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserServices {
 		User testUser = userExists(user);
 		
 		if (testUser != null) {
-			testUser.setUserPassword(decryptPassword(testUser.getUserPassword()));
+			testUser.setUserPassword(testUser.getUserPassword());
 			if (user.getUserPassword().equals(testUser.getUserPassword())) {
 				success = true;
 			}
@@ -71,10 +71,8 @@ public class UserServiceImpl implements UserServices {
 		String randomPassword = generateRandomPassword();
 		System.out.println(randomPassword);
 		sendEmail(user.getUserEmail(), randomPassword);
-		String encryptedPassword = encryptPassword(randomPassword);
-		user.setUserPassword(encryptedPassword);
+		user.setUserPassword(randomPassword);
 		user = userDao.save(user);
-
 		return user;
 	}
 
@@ -91,23 +89,11 @@ public class UserServiceImpl implements UserServices {
 		return sb.toString();
 	}
 
-	private String encryptPassword(String password) {
-		loggy.info("encrypting password");
-		String encodedString = Base64.getEncoder().encodeToString(password.getBytes());
-		return encodedString;
-
-	}
-
-	private String decryptPassword(String password) {
-		loggy.info("decrypt password");
-		byte[] decodedBytes = Base64.getDecoder().decode(password);
-		String decodedString = new String(decodedBytes);
-		return decodedString;
-	}
 
 	@Override
 	public boolean updateUserEmail(User user) {
-		loggy.info("updating user email");
+		user.setUserPassword(user.getUserPassword());
+
 		userDao.updateEmail(user.getUserEmail(), user.getId());
 
 		return false;

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { User } from '../models/User';
-import { SavedJob } from '../models/SavedJob';
 import { DataService } from './data.service';
 
 @Injectable({

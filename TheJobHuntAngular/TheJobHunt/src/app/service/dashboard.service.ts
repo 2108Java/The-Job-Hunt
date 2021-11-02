@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
-import { SearchService } from './search.service';
-import { JobService } from './job.service';
 import { Router } from '@angular/router';
-import { Job } from '../models/Job';
 
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { DataService } from './data.service';
+import { HttpClient } from '@angular/common/http';
 import { SavedJob } from '../models/SavedJob';
 
 import { UserInformation } from '../models/UserInformation';
@@ -19,8 +15,6 @@ export class DashboardService {
 
 
   constructor(private httpClient: HttpClient,
-    private searchService: SearchService,
-    private jobService: JobService,
     private router: Router) { }
 
 
@@ -33,25 +27,11 @@ export class DashboardService {
     );
   }
   updateSavedJob(job: SavedJob) {
-    let options = {
-      withCredentials: true,
-      observe: 'response' as 'response',
-      body: {
-        "Users": job.Users,
-        "AppliedFor": job.AppliedFor,
-        "Id": job.Id,
-        "OrganizationName": job.OrganizationName,
-        "MatchedObjectId": job.MatchedObjectId,
-        "PositionTitle": job.PositionTitle,
-        "PositionLocationDisplay": job.PositionLocationDisplay,
-        "AgencyMarketingStatement": job.AgencyMarketingStatement,
-        "Evaluations": job.Evaluations,
-        "JobSummary": job.JobSummary,
-        "OtherInformation": job.OtherInformation,
-        "Requirements": job.Requirements
-      },
-    };
-    return this.httpClient.post<SavedJob>("http://localhost:8000/jobs/updateJob", options);
+    return this.httpClient.put<SavedJob>("http://localhost:8000/jobs/updateJob", {
+      "AppliedFor": job.AppliedFor,
+      "Id": job.Id,
+    }, { withCredentials: true, observe: 'response' as 'response'
+   });
   }
   deleteJob(job: SavedJob) {
     let options = {

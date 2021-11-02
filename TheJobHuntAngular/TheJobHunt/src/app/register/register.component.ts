@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async onSubmit() {
-     if (this.registerform.valid) {
+    if (this.registerform.valid) {
 
       this.currentUserInfo = new UserInformation(
         -1,
@@ -54,28 +54,20 @@ export class RegisterComponent implements OnInit {
 
       await this.regService.registerNewUser(this.registerform.value.email).subscribe(
         (data) => {
-          console.log(data.body);
           if (data.body != null) {
             this.dataService.currentUser = data.body;
             this.currentUser = data.body;
-            console.log(this.currentUser);
             this.regService.registerInfoNewUser(this.currentUserInfo).subscribe(
               (data) => {
-                console.log(data.body);
                 if (data.status == 200) {
                   window.alert('Your registration was successful! Login and get started!');
                   this.router.navigate([this.returnUrl]);
                 }
-        
               }
             );
-            }
+          }
         }
       );
     }
-    
   }
-
-
-
 }

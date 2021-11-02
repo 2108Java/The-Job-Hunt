@@ -9,7 +9,8 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  returnUrl: string | any;
+  returnUrl!: string;
+  message!: string | null;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -19,14 +20,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = '/home';
-    this.login();
   }
+
   loginform = this.formBuilder.group({
     email: ["", [Validators.required, Validators.email]],
     password: ["", Validators.required]
   });
 
   login() {
+    this.message = null;
     if (this.loginform.valid) {
       this.loginService.loginRequestWithPost(this.loginform.controls['email'].value,
         this.loginform.controls['password'].value).subscribe(
@@ -34,13 +36,14 @@ export class LoginComponent implements OnInit {
             if (data.body != null) {
               this.dataService.currentUser = data.body;
               sessionStorage.setItem('isLoggedIn', "true");
-              console.log(data.headers);
               this.router.navigate([this.returnUrl]);
+            }else{
+              this.message = "Cannot find email or password, try re-entering email/password."
             }
           }
         );
     } else {
-      // this.loginform.validator;
+      this.message = "Invalid form input, fix form and try logging in aggain."
     }
   }
 }
