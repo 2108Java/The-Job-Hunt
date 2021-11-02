@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Job } from '../models/Job';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { SearchService } from '../service/search.service';
 import { Router } from '@angular/router';
 import { JobService } from '../service/job.service';
@@ -19,7 +19,7 @@ export interface fakeJob {
 export class SearchComponent implements OnInit {
   JobListObservable!: Observable<Job[]>;
   JobList!: Job[];
-
+  message!: string | null;
 
   constructor(private formBuilder: FormBuilder, private searchService: SearchService, private jobService: JobService, private router: Router) { }
 
@@ -33,44 +33,23 @@ export class SearchComponent implements OnInit {
   });
 
   getAllJobs() {
+    this.message=null;
     this.searchService.getSearch(this.searchbar.get("searchString")!.value).subscribe(
       (data) => {
         let obj: any = data;
         this.JobList = obj.SearchResult.SearchResultItems;
-        console.log(this.JobList);
       }
     );
     this.jobService
   }
 
   public selectJob(job: Job) {
-    if(job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement.length < 1){
-      job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement = "empty";
-    }
-    if(job.MatchedObjectDescriptor.UserArea.Details.Evaluations.length < 1){
-      job.MatchedObjectDescriptor.UserArea.Details.Evaluations = "empty";
-    }
-    if(job.MatchedObjectDescriptor.UserArea.Details.JobSummary.length < 1){
-      job.MatchedObjectDescriptor.UserArea.Details.JobSummary = "empty";
-    }
-    if(job.MatchedObjectDescriptor.UserArea.Details.OtherInformation.length < 1){
-      job.MatchedObjectDescriptor.UserArea.Details.OtherInformation = "empty";
-    }
-    if(job.MatchedObjectDescriptor.UserArea.Details.Requirements.length < 1){
-      job.MatchedObjectDescriptor.UserArea.Details.Requirements = "empty";
-    }
-    if(job.MatchedObjectDescriptor.PositionLocationDisplay.length < 1){
-      job.MatchedObjectDescriptor.PositionLocationDisplay = "empty";
-    }
-    if(job.MatchedObjectDescriptor.PositionTitle.length < 1){
-      job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement = "empty";
-    }
-    if(job.MatchedObjectDescriptor.OrganizationName.length < 1){
-      job.MatchedObjectDescriptor.OrganizationName = "empty";
-    }
     this.jobService.currentJob = job;
     this.router.navigate(['/jobDetails']);
 
   }
 
+  addJobToList(job: Job) {
+    this.searchService.addJob(job).subscribe((data) => this.message = "Successfully added job to your list!");
+  }
 }

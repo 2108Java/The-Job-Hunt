@@ -1,55 +1,56 @@
 <div class="container-fluid">
+    <div class="alert alert-success" role="alert" *ngIf="message != null">
+        {{message}}
+      </div>
     <div class="row d-flex justify-content-center">
-        <div class="col col-7">
+        <div class="col">
             <div *ngIf="job.MatchedObjectDescriptor.PositionTitle.length > 0">
                 <h3>{{job.MatchedObjectDescriptor.PositionTitle}}</h3>
-            </div>
-        </div>
-        <div class="col col-3">
-            <div *ngIf="job.MatchedObjectDescriptor.PositionTitle.length > 0">
-                <button class="btn btn-primary" (click)="addJobToList()">Add Job To Your List</button>
             </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
         <div class="col col-3">
             <div *ngIf="job.MatchedObjectDescriptor.OrganizationName.length > 0">
-                <label>Organization Name</label>
-                <h5>{{job.MatchedObjectDescriptor.OrganizationName}}</h5>
+                <h6>Organization Name</h6>
+                <p>{{job.MatchedObjectDescriptor.OrganizationName}}</p>
                 <hr>
             </div>
             <div *ngIf="job.MatchedObjectDescriptor.PositionLocationDisplay.length > 0">
-                <label>Location</label>
-                <h5>{{job.MatchedObjectDescriptor.PositionLocationDisplay}}</h5>
+                <h6>Location</h6>
+                <p>{{job.MatchedObjectDescriptor.PositionLocationDisplay}}</p>
+            </div>
+            <div class="d-grid"*ngIf="job.MatchedObjectDescriptor.PositionTitle.length > 0">
+                <button class="btn btn-primary" (click)="addJobToList()">Add Job To Your List</button>
             </div>
         </div>
-        <div class="col col-7">
+        <div class="col col-9">
             <div *ngIf="job.MatchedObjectDescriptor.UserArea.Details.JobSummary.length > 0">
-                <label>Job Summary</label>
-                <h6>{{job.MatchedObjectDescriptor.UserArea.Details.JobSummary}}</h6>
+                <h6>Job Summary</h6>
+                <p>{{job.MatchedObjectDescriptor.UserArea.Details.JobSummary}}</p>
                 <hr>
             </div>
             <div *ngIf="job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement.length > 0">
-                <label>Agency Statement</label>
-                <h6>{{job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement}}</h6>
+                <h6>Agency Statement</h6>
+                <p>{{job.MatchedObjectDescriptor.UserArea.Details.AgencyMarketingStatement}}</p>
             </div>
         </div>
     </div>
     <div class="row d-flex justify-content-center">
-        <div class="col col-10">
+        <div class="col col-12">
             <div *ngIf="job.MatchedObjectDescriptor.UserArea.Details.Requirements.length > 0">
-                <label>Requirements</label>
-                <h6>{{job.MatchedObjectDescriptor.UserArea.Details.Requirements}}</h6>
+                <h6>Requirements</h6>
+                <p>{{job.MatchedObjectDescriptor.UserArea.Details.Requirements}}</p>
                 <hr>
             </div>
             <div *ngIf="job.MatchedObjectDescriptor.UserArea.Details.Evaluations.length > 0">
-                <label>Evaluations</label>
-                <h6>{{job.MatchedObjectDescriptor.UserArea.Details.Evaluations}}</h6>
+                <h6>Evaluations</h6>
+                <p>{{job.MatchedObjectDescriptor.UserArea.Details.Evaluations}}</p>
                 <hr>
             </div>
             <div *ngIf="job.MatchedObjectDescriptor.UserArea.Details.OtherInformation.length > 0">
-                <label>Other Information</label>
-                <h6>{{job.MatchedObjectDescriptor.UserArea.Details.OtherInformation}}</h6>
+                <h6>Other Information</h6>
+                <p>{{job.MatchedObjectDescriptor.UserArea.Details.OtherInformation}}</p>
             </div>
         </div>
     </div>
