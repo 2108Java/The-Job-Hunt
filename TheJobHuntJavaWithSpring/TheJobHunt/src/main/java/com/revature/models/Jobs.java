@@ -20,8 +20,6 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("deprecation")
 @JsonNaming(PropertyNamingStrategy.UpperCamelCaseStrategy.class)
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "saved_jobs")
 public class Jobs {

@@ -61,6 +61,7 @@ public class UserControllerImpl implements UserController {
 
 	@Override
 	@PutMapping(value="/updateUserEmail")
+
 	public void updateUserEmail(HttpSession session,@RequestBody User user) {
 		User oldUser = (User) session.getAttribute("user");
 		if(session.getAttribute("user") != null) {

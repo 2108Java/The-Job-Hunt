@@ -12,6 +12,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,26 +22,33 @@ import com.revature.repo.UserDao;
 @Service("UserService")
 public class UserServiceImpl implements UserServices {
 
+	private static final Logger loggy = Logger.getLogger(UserServices.class);
+	
 	@Autowired
 	private UserDao userDao;
 
 	@Override
 	public User userExists(User user) {
-
+		loggy.info("user attempting to found");
 		User userExists = userDao.getByUserEmail(user.getUserEmail());
-		if (userExists != null)
+		if (userExists != null) {
+			loggy.info("user found");
 			return userExists;
+		}
+			
 		else {
+			loggy.warn("user failed to be found");
 			return null;
 		}
 	}
 
 	@Override
 	public User loginUser(User user) {
-
+		
+		loggy.info("user attempting to log in");
 		boolean success = false;
 		User testUser = userExists(user);
-
+		
 		if (testUser != null) {
 			testUser.setUserPassword(testUser.getUserPassword());
 			if (user.getUserPassword().equals(testUser.getUserPassword())) {
@@ -48,8 +56,10 @@ public class UserServiceImpl implements UserServices {
 			}
 		}
 		if (success) {
+			loggy.info("user logged in");
 			return testUser;
 		} else {
+			loggy.warn("user failed to log in");
 			return null;
 		}
 
@@ -57,17 +67,17 @@ public class UserServiceImpl implements UserServices {
 
 	@Override
 	public User insertUser(User user) {
+		loggy.info("Creating user");
 		String randomPassword = generateRandomPassword();
 		System.out.println(randomPassword);
 		sendEmail(user.getUserEmail(), randomPassword);
 		user.setUserPassword(randomPassword);
-//		createUser(user);
 		user = userDao.save(user);
-
 		return user;
 	}
 
 	private static String generateRandomPassword() {
+		loggy.info("random password being made");
 		final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 		SecureRandom random = new SecureRandom();
 		StringBuilder sb = new StringBuilder();
@@ -79,9 +89,11 @@ public class UserServiceImpl implements UserServices {
 		return sb.toString();
 	}
 
+
 	@Override
 	public boolean updateUserEmail(User user) {
 		user.setUserPassword(user.getUserPassword());
+
 		userDao.updateEmail(user.getUserEmail(), user.getId());
 
 		return false;
@@ -89,14 +101,14 @@ public class UserServiceImpl implements UserServices {
 
 	@Override
 	public boolean updateUserPassword(User user) {
-
+		loggy.info("update user password");
 		userDao.updatePassword(user.getUserPassword(), user.getId());
 
 		return false;
 	}
 
 	private void sendEmail(String email, String password) {
-
+		loggy.info("send email to user with starting password");
 		String to = email;
 		String from = "thejobhuntnoreply@gmail.com";
 		String host = "smtp.gmail.com";
@@ -122,7 +134,8 @@ public class UserServiceImpl implements UserServices {
 					+ "</h3><h3>Don't forget to update it next time you login!</h3>", "text/html");
 			Transport.send(message);
 		} catch (MessagingException mex) {
-			mex.printStackTrace();
+
+			loggy.warn(mex);
 		}
 
 	}
