@@ -1,7 +1,15 @@
 USAJobs api Job search app
 =======
-*By The PoJo's*
+*By The PoJo's using USAJobs API*
 -----------
+
+Project Summary
+-----------
+	The Project will allow applicants to easily search for jobs and apply or save them for later. This will allow for a
+simpler process for applicants to find jobs based on different fields like location, title, keywords, or the type of
+sechdule the job is. This is different from other such sites as it will be primarily for government jobs rather
+than normal public jobs. Applicants will be able to register for an account and be given a temporary password to 
+initialize an account and keep track of all saved and applied for jobs.
 
 User Stories:
 -----------
