@@ -19,7 +19,7 @@ User Stories:
 3. User is able to check application status for jobs applied to (user will check a box to apply)
 4. User is able to register for an account
 5. User is able to save jobs for later
-6. User is able to keep track of jobs "applied for"
+6. User is able to keep track of jobs that they have checked off they have applied for
 7. User is able to delete jobs
 8. User is able to filter jobs by:
 	* Location
