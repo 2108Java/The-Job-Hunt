@@ -5,7 +5,7 @@ USAJobs api Job search app
 
 Project Summary
 -----------
-	The Project will allow applicants to easily search for jobs and apply or save them for later. This will allow for a
+The Project will allow applicants to easily search for jobs and apply or save them for later. This will allow for a
 simpler process for applicants to find jobs based on different fields like location, title, keywords, or the type of
 sechdule the job is. This is different from other such sites as it will be primarily for government jobs rather
 than normal public jobs. Applicants will be able to register for an account and be given a temporary password to 
