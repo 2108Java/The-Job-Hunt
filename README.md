@@ -15,7 +15,7 @@ User Stories:
 -----------
 
 1. User is able to log in/ log out
-2. User is able to fill in a question air for personal information
+2. User is able to fill in a questionnaire for personal information
 3. User is able to check application status for jobs applied to (user will check a box to apply)
 4. User is able to register for an account
 5. User is able to save jobs for later
